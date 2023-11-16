@@ -1,4 +1,5 @@
 import math
+from collections import defaultdict
 
 # def getPotentialOfWinner(potential, k):
 #     win = 0
@@ -526,28 +527,45 @@ import math
 # extractErrorLogs(logs_1)
 
 
-def getMatchingProducts(products, queries):
-    print('products---', products)
-    print('queries---', queries)
-    sorted_products = sorted(products, key=lambda products: int(products[1]))
-    print('sorted_products---', sorted_products)
-    returned_products = []
+# def getMatchingProducts(products, queries):
+#     print('products---', products)
+#     print('queries---', queries)
+#     sorted_products = sorted(products, key=lambda products: int(products[1]))
+#     print('sorted_products---', sorted_products)
+#     returned_products = []
 
-    for query in queries:
-        returned_products.append([])
-        for product in sorted_products:
-            if query[0] == 'Type1':
-                if query[1] == product[2]:
-                    returned_products[-1].append(product[0])
-                else:
-                    continue
-            elif query[0] == 'Type2':
-                if int(query[1]) > int(product[1]):
-                    returned_products[-1].append(product[0])
-                else:
-                    continue
-            elif query[0] == 'Type3':
-                if int(query[1]) < int(product[1]):
-                    returned_products[-1].append(product[0])
-    return returned_products
+#     for query in queries:
+#         returned_products.append([])
+#         for product in sorted_products:
+#             if query[0] == 'Type1':
+#                 if query[1] == product[2]:
+#                     returned_products[-1].append(product[0])
+#                 else:
+#                     continue
+#             elif query[0] == 'Type2':
+#                 if int(query[1]) > int(product[1]):
+#                     returned_products[-1].append(product[0])
+#                 else:
+#                     continue
+#             elif query[0] == 'Type3':
+#                 if int(query[1]) < int(product[1]):
+#                     returned_products[-1].append(product[0])
+#     return returned_products
 
+def countPalindromicSubsequence(s):
+    palindromes = set()
+    left = set(s[0])
+    right = defaultdict(int)
+    for i in range(2, len(s)):
+        char = s[i]
+        right[char] += 1
+        
+    for i in range(1,len(s)-1):
+        mid_char = s[i]
+
+        for left_char in left:
+            if right[left_char] > 0:
+                palindromes.add(f'{left_char}{mid_char}{left_char}')
+        right[s[i+1]] -= 1
+        left.add(mid_char)
+    return len(palindromes)
