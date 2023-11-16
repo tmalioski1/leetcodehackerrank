@@ -525,3 +525,29 @@ import math
 # logs_1 = [['01-01-2022', '18:00', 'CRITICAL', 'failed'], ['01-01-2023', '15:00', 'ERROR', 'failed'], ['01-01-2023', '16:00', 'SUCCESS', 'established']]
 # extractErrorLogs(logs_1)
 
+
+def getMatchingProducts(products, queries):
+    print('products---', products)
+    print('queries---', queries)
+    sorted_products = sorted(products, key=lambda products: int(products[1]))
+    print('sorted_products---', sorted_products)
+    returned_products = []
+
+    for query in queries:
+        returned_products.append([])
+        for product in sorted_products:
+            if query[0] == 'Type1':
+                if query[1] == product[2]:
+                    returned_products[-1].append(product[0])
+                else:
+                    continue
+            elif query[0] == 'Type2':
+                if int(query[1]) > int(product[1]):
+                    returned_products[-1].append(product[0])
+                else:
+                    continue
+            elif query[0] == 'Type3':
+                if int(query[1]) < int(product[1]):
+                    returned_products[-1].append(product[0])
+    return returned_products
+
