@@ -268,28 +268,78 @@ class ListNode {
 // getResponses(validAuthTokens, requests1)
 
 
-const selfDividingNumber =  (left, right) => {
-let selfDivideArray = []
-for (let i = left; i <=right; i++) {
-  let stringNum = i.toString()
-  if (stringNum.includes('0')){
-    continue
-  }
-  let isSelfDividing = true
-  for (let j = 0; j < stringNum.length; j++) {
-    let digitChar = stringNum[j]
-    individualInt = Number(digitChar)
-    if (i % individualInt !=0) {
-      isSelfDividing= false
-      break
+// const selfDividingNumber =  (left, right) => {
+// let selfDivideArray = []
+// for (let i = left; i <=right; i++) {
+//   let stringNum = i.toString()
+//   if (stringNum.includes('0')){
+//     continue
+//   }
+//   let isSelfDividing = true
+//   for (let j = 0; j < stringNum.length; j++) {
+//     let digitChar = stringNum[j]
+//     individualInt = Number(digitChar)
+//     if (i % individualInt !=0) {
+//       isSelfDividing= false
+//       break
+//     }
+//   }
+//   if (isSelfDividing) {
+//     selfDivideArray.push(i)
+//   }
+// }
+// return selfDivideArray
+// }
+
+
+// console.log(selfDividingNumber(1, 22))
+// const twoDimensionalSum = function (arr) {
+//   let sum = 0
+//   for (let i = 0; i < arr.length; i++) {
+//     let row = arr[i]
+//     for (let j = 0; j < row.length; j++) {
+//       sum += row[j]
+
+//     }
+//   }
+//    return sum
+// }
+// let arr1 = [
+//   [1, 3],
+//   [-4, 7, 10],
+//   [2]
+// ];
+// console.log(twoDimensionalSum(arr1)); // 19
+
+// let arr2 = [
+//   [],
+//   [3, 1, 2],
+// ];
+// console.log(twoDimensionalSum(arr2)); // 6
+
+
+function maxColumn(matrix) {
+  const height = matrix.length;
+  const width = matrix[0].length;
+
+  const maxColumns = [];
+  for (let col = 0 ; col < width ; col++) {
+    let colMax = matrix[0][col];
+    for (let row = 1 ; row < height ; row++) {
+        if (matrix[row][col] > colMax) {
+            colMax = matrix[row][col];
+        }
     }
+    maxColumns.push(colMax);
   }
-  if (isSelfDividing) {
-    selfDivideArray.push(i)
-  }
-}
-return selfDivideArray
-}
 
 
-console.log(selfDividingNumber(1, 22))
+  return maxColumns;
+}
+
+matrix = [[ 5,  9, 21],
+          [ 9, 19,  6],
+          [12, 14, 15]]
+
+
+console.log(maxColumn(matrix)); // [12, 19, 21]
