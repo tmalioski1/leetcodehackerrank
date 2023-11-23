@@ -337,9 +337,118 @@ function maxColumn(matrix) {
   return maxColumns;
 }
 
-matrix = [[ 5,  9, 21],
-          [ 9, 19,  6],
-          [12, 14, 15]]
+// matrix = [[ 5,  9, 21],
+//           [ 9, 19,  6],
+//           [12, 14, 15]]
 
 
-console.log(maxColumn(matrix)); // [12, 19, 21]
+// console.log(maxColumn(matrix)); // [12, 19, 21]
+
+
+// const zip = (arr1, arr2) => {
+//   let twoDArray = [[arr1[0], arr2[0]]]
+//   for (let i = 1; i <arr1.length; i++) {
+//     let val1 = arr1[i]
+//     let val2 = arr2[i]
+//     twoDArray.push([val1, val2])
+//   }
+//   return twoDArray
+// }
+
+// console.log(zip([1, 2, 3, 4], ['eins', 'zwei', 'drei', 'vier']));
+// // [ [ 1, 'eins' ], [ 2, 'zwei' ], [ 3, 'drei' ], [ 4, 'vier' ] ]
+
+// console.log(zip(['eins', 'zwei', 'drei'], [1, 2, 3]));
+// // [ [ 'eins', 1 ], [ 'zwei', 2 ], [ 'drei', 3 ] ]
+
+// console.log(zip(['alef', 'bet'], ['alpha', 'beta']));
+// // [ [ 'alef', 'alpha' ], [ 'bet', 'beta' ] ]
+
+// const twoDimensionalSum = (arr) => {
+//   let sum = 0
+//   for (let i = 0; i < arr.length; i++) {
+//     let subArray = arr[i]
+//     for (let j = 0; j < subArray.length; j++){
+//       sum += subArray[j]
+//     }
+
+//   }
+//   return sum
+// }
+// let arr1 = [
+//   [1, 3],
+//   [-4, 7, 10],
+//   [2]
+// ];
+// console.log(twoDimensionalSum(arr1)); // 19
+
+// let arr2 = [
+//   [],
+//   [3, 1, 2],
+// ];
+// console.log(twoDimensionalSum(arr2)); // 6
+
+// function luckyNumbers(matrix) {
+//   const luckyNumbers = [];
+
+//   for (let i = 0; i < matrix.length; i++) {
+//       const minInRow = Math.min(...matrix[i]);
+
+//       const columnIndex = matrix[i].indexOf(minInRow);
+
+//       // Check if the current number is also the maximum in its column
+//       if (matrix.every(row => row[columnIndex] <= minInRow)) {
+//           luckyNumbers.push(minInRow);
+//       }
+//   }
+
+//   return luckyNumbers;
+// }
+
+// matrix = [[ 5,  9, 21],
+//           [ 9, 19,  6],
+//           [12, 14, 15]]
+
+// console.log(luckyNumbers(matrix)); // [12]
+
+// matrix = [[ 5, 10,  8,  6],
+//           [10,  2,  7,  9],
+//           [21, 15, 19, 10]]
+
+// console.log(luckyNumbers(matrix)); // [10]
+
+// function spiralOrder(matrix) {
+//   let firstRow = matrix[0]
+//   let middleNumbers = middleRowAddition(matrix)
+//   let lastRow = matrix[matrix.length -1].reverse()
+//   let middleRow = matrix[1].splice(0, matrix[1].length -1)
+//   return [...firstRow, ...middleNumbers, ...lastRow, ...middleRow]
+
+
+// }
+
+// function middleRowAddition(matrix) {
+//   let middleRowMatrix = []
+//   for (let i = 1; i <matrix.length -1; i++) {
+//     let row = matrix[i]
+//     let lastNum = row[row.length -1]
+//     middleRowMatrix.push(lastNum)
+//   }
+//   return middleRowMatrix
+// }
+
+
+// matrix = [[ 1, 2, 3],
+//           [ 4, 5, 6],
+//           [ 7, 8, 9]]
+
+// console.log(spiralOrder(matrix)); // [1,2,3,6,9,8,7,4,5]
+// // console.log(middleRowAddition(matrix)); // [1,2,3,6,9,8,7,4,5]
+
+// matrix = [[1, 2, 3, 4],
+//           [5, 6, 7, 8],
+//           [9,10,11,12]]
+
+
+// console.log(spiralOrder(matrix)); // [1,2,3,4,8,12,11,10,9,5,6,7]
+// // console.log(middleRowAddition(matrix)); // [1,2,3,4,8,12,11,10,9,5,6,7]
