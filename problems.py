@@ -1,6 +1,6 @@
-import math
-from collections import defaultdict
-import re
+# import math
+# from collections import defaultdict
+# import re
 # def getPotentialOfWinner(potential, k):
 #     win = 0
 
@@ -18,7 +18,6 @@ import re
 #     return winner
 
 # print(getPotentialOfWinner([3, 2, 1, 4],3))
-
 
 
 
@@ -631,3 +630,63 @@ import re
 
 # result = findPrimeDates(d1, m1, y1, d2, m2, y2)
 # print(result)
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'balancedSums' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+#iterate through arrray
+#create left_array and right_array variable
+#if sum is equal, return "YES", else "NO"
+
+# def balancedSums(arr):
+#     if len(arr) == 1:
+#         return "YES"
+#     if len(arr) == 2 and arr[0] == arr[1]:
+#         return "YES"
+#     if len(arr) == 3 and arr[0] == arr[2]:
+#         return "YES"
+#     if arr[0] == sum(arr[1:len(arr)]):
+#         return "YES"
+
+def balancedSums(arr):
+    left_sum = 0
+    total_sum = sum(arr)
+    for i in range(len(arr)):
+        right_sum = total_sum - left_sum - arr[i]
+        if left_sum == right_sum:
+            return "YES"
+        else:
+            left_sum = left_sum + arr[i]
+    return "NO"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+arr1= [1, 2, 3]
+arr2= [1, 1, 4, 1, 1]
+
+
+print(balancedSums(arr1))
+print(balancedSums(arr2))
