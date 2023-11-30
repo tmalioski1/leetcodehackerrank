@@ -659,16 +659,16 @@ import sys
 #     if arr[0] == sum(arr[1:len(arr)]):
 #         return "YES"
 
-def balancedSums(arr):
-    left_sum = 0
-    total_sum = sum(arr)
-    for i in range(len(arr)):
-        right_sum = total_sum - left_sum - arr[i]
-        if left_sum == right_sum:
-            return "YES"
-        else:
-            left_sum = left_sum + arr[i]
-    return "NO"
+# def balancedSums(arr):
+#     left_sum = 0
+#     total_sum = sum(arr)
+#     for i in range(len(arr)):
+#         right_sum = total_sum - left_sum - arr[i]
+#         if left_sum == right_sum:
+#             return "YES"
+#         else:
+#             left_sum = left_sum + arr[i]
+#     return "NO"
 
 
 
@@ -684,9 +684,39 @@ def balancedSums(arr):
 
 
 
-arr1= [1, 2, 3]
-arr2= [1, 1, 4, 1, 1]
+# arr1= [1, 2, 3]
+# arr2= [1, 1, 4, 1, 1]
 
 
-print(balancedSums(arr1))
-print(balancedSums(arr2))
+# print(balancedSums(arr1))
+# print(balancedSums(arr2))
+
+
+
+def getWinner(arr, k):
+        if k>= len(arr):
+            return max(arr)
+
+        wins = 0
+        curr_winner = arr[0]
+        i = 1
+
+        while wins < k and i < len(arr):
+              opponent = arr[i]
+              if curr_winner > opponent:
+                    wins += 1
+              else:
+                    curr_winner = opponent
+                    wins = 1
+              i += 1
+              i %= len(arr)
+
+
+        return curr_winner
+
+
+
+
+
+print(getWinner([2,1,3,5,4,6,7], 2))
+print(getWinner([3,2,1], 10))

@@ -318,24 +318,24 @@ class ListNode {
 // console.log(twoDimensionalSum(arr2)); // 6
 
 
-function maxColumn(matrix) {
-  const height = matrix.length;
-  const width = matrix[0].length;
+// function maxColumn(matrix) {
+//   const height = matrix.length;
+//   const width = matrix[0].length;
 
-  const maxColumns = [];
-  for (let col = 0 ; col < width ; col++) {
-    let colMax = matrix[0][col];
-    for (let row = 1 ; row < height ; row++) {
-        if (matrix[row][col] > colMax) {
-            colMax = matrix[row][col];
-        }
-    }
-    maxColumns.push(colMax);
-  }
+//   const maxColumns = [];
+//   for (let col = 0 ; col < width ; col++) {
+//     let colMax = matrix[0][col];
+//     for (let row = 1 ; row < height ; row++) {
+//         if (matrix[row][col] > colMax) {
+//             colMax = matrix[row][col];
+//         }
+//     }
+//     maxColumns.push(colMax);
+//   }
 
 
-  return maxColumns;
-}
+//   return maxColumns;
+// }
 
 // matrix = [[ 5,  9, 21],
 //           [ 9, 19,  6],
@@ -453,40 +453,65 @@ function maxColumn(matrix) {
 // console.log(spiralOrder(matrix)); // [1,2,3,4,8,12,11,10,9,5,6,7]
 // // console.log(middleRowAddition(matrix)); // [1,2,3,4,8,12,11,10,9,5,6,7]
 
-const pyramidArray = (base) => {
-  let twoDArray = [base]
-  let baseCopy = base
-  while (baseCopy.length >= 2) {
-    baseCopy = addToSubtract(baseCopy);
-    twoDArray.push(baseCopy);
+// const pyramidArray = (base) => {
+//   let twoDArray = [base]
+//   let baseCopy = base
+//   while (baseCopy.length >= 2) {
+//     baseCopy = addToSubtract(baseCopy);
+//     twoDArray.push(baseCopy);
+//   }
+//   return twoDArray.reverse()
+// }
+// const addToSubtract = (arr) => {
+//   let newArr= []
+//   for (let i = 0; i < arr.length -1; i++) {
+//     let num = arr[i]
+//     let secondNum = arr[i+1]
+//     newArr.push(num + secondNum)
+//   }
+//   return newArr
+// }
+
+// let p1 = pyramidArray([2, 3, 7, 5, 9]);
+// console.log(p1);
+// // [
+// //   [ 85 ],
+// //   [ 37, 48 ],
+// //   [ 15, 22, 26 ],
+// //   [ 5, 10, 12, 14 ],
+// //   [ 2, 3, 7, 5, 9 ]
+// // ]
+
+// let p2 = pyramidArray([2, 2, 2, 2]);
+// console.log(p2);
+// // [
+// //   [ 16 ],
+// //   [ 8, 8 ],
+// //   [ 4, 4, 4 ],
+// //   [ 2, 2, 2, 2 ]
+// // ]
+
+const getWinner = (arr, k) => {
+  if (k >= arr.length) {
+    return Math.max(...arr)
   }
-  return twoDArray.reverse()
-}
-const addToSubtract = (arr) => {
-  let newArr= []
-  for (let i = 0; i < arr.length -1; i++) {
-    let num = arr[i]
-    let secondNum = arr[i+1]
-    newArr.push(num + secondNum)
+  let wins = 0
+  let currWinner = arr[0]
+  let i = 1
+  while (wins < k && i < arr.length) {
+    const opponent = arr[i]
+    if (currWinner > opponent) {
+      wins++
+    }
+    else {
+      currWinner = opponent
+      wins = 1
+    }
+    i++
+    i %= arr.length
   }
-  return newArr
+  return currWinner
 }
 
-let p1 = pyramidArray([2, 3, 7, 5, 9]);
-console.log(p1);
-// [
-//   [ 85 ],
-//   [ 37, 48 ],
-//   [ 15, 22, 26 ],
-//   [ 5, 10, 12, 14 ],
-//   [ 2, 3, 7, 5, 9 ]
-// ]
-
-let p2 = pyramidArray([2, 2, 2, 2]);
-console.log(p2);
-// [
-//   [ 16 ],
-//   [ 8, 8 ],
-//   [ 4, 4, 4 ],
-//   [ 2, 2, 2, 2 ]
-// ]
+console.log(getWinner([2,1,3,5,4,6,7], 2))
+console.log(getWinner([3,2,1], 10))
