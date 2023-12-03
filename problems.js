@@ -491,27 +491,65 @@ class ListNode {
 // //   [ 2, 2, 2, 2 ]
 // // ]
 
-const getWinner = (arr, k) => {
-  if (k >= arr.length) {
-    return Math.max(...arr)
-  }
-  let wins = 0
-  let currWinner = arr[0]
-  let i = 1
-  while (wins < k && i < arr.length) {
-    const opponent = arr[i]
-    if (currWinner > opponent) {
-      wins++
-    }
-    else {
-      currWinner = opponent
-      wins = 1
-    }
-    i++
-    i %= arr.length
-  }
-  return currWinner
-}
+// const getWinner = (arr, k) => {
+//   if (k >= arr.length) {
+//     return Math.max(...arr)
+//   }
+//   let wins = 0
+//   let currWinner = arr[0]
+//   let i = 1
+//   while (wins < k && i < arr.length) {
+//     const opponent = arr[i]
+//     if (currWinner > opponent) {
+//       wins++
+//     }
+//     else {
+//       currWinner = opponent
+//       wins = 1
+//     }
+//     i++
+//     i %= arr.length
+//   }
+//   return currWinner
+// }
 
-console.log(getWinner([2,1,3,5,4,6,7], 2))
-console.log(getWinner([3,2,1], 10))
+// console.log(getWinner([2,1,3,5,4,6,7], 2))
+// console.log(getWinner([3,2,1], 10))
+// const invertTree = (root) => {
+//   if (!root) {
+//     return null
+//   }
+//   const queue = []
+//   queue.push(root)
+//   while (queue.length >0) {
+//     let node = queue.shift()
+//     let temp = node.left;
+//     node.left = node.right;
+//     node.right = temp;
+//     if (node.left) {
+//       queue.push(node.left)
+//     }
+//     if (node.right) {
+//       queue.push(node.right)
+//     }
+//   }
+//   return root
+// }
+
+
+/**
+ * Definition for a binary tree node.
+ function TreeNode(val, left, right) {
+    this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+
+
+};

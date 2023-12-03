@@ -632,11 +632,11 @@
 # print(result)
 #!/bin/python3
 
-import math
-import os
-import random
-import re
-import sys
+# import math
+# import os
+# import random
+# import re
+# import sys
 
 #
 # Complete the 'balancedSums' function below.
@@ -693,30 +693,56 @@ import sys
 
 
 
-def getWinner(arr, k):
-        if k>= len(arr):
-            return max(arr)
+# def getWinner(arr, k):
+#         if k>= len(arr):
+#             return max(arr)
 
-        wins = 0
-        curr_winner = arr[0]
-        i = 1
+#         wins = 0
+#         curr_winner = arr[0]
+#         i = 1
 
-        while wins < k and i < len(arr):
-              opponent = arr[i]
-              if curr_winner > opponent:
-                    wins += 1
-              else:
-                    curr_winner = opponent
-                    wins = 1
-              i += 1
-              i %= len(arr)
-
-
-        return curr_winner
+#         while wins < k and i < len(arr):
+#               opponent = arr[i]
+#               if curr_winner > opponent:
+#                     wins += 1
+#               else:
+#                     curr_winner = opponent
+#                     wins = 1
+#               i += 1
+#               i %= len(arr)
 
 
+#         return curr_winner
 
 
 
-print(getWinner([2,1,3,5,4,6,7], 2))
-print(getWinner([3,2,1], 10))
+
+
+# print(getWinner([2,1,3,5,4,6,7], 2))
+# print(getWinner([3,2,1], 10))
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# from collections import deque
+# def invertTree(root: TreeNode) -> TreeNode:
+#     if not root:
+#         return None
+
+#     queue = deque()
+#     queue.append(root)
+
+#     while queue:
+#         node = queue.popleft()
+
+#         node.left, node.right = node.right, node.left
+
+#         if node.left:
+#             queue.append(node.left)
+#         if node.right:
+#             queue.append(node.right)
+
+#     return root
+
+
