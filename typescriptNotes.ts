@@ -85,3 +85,82 @@
 // };
 
 // console.log(toRNA('C'))
+
+// const age = (planet: string, seconds: number): number => {
+//     interface Planet {
+//         [key:string] : number
+//     }
+//     const planetRatios: Planet = {
+//     mercury: 0.2408467,
+//     venus: 0.61519726,
+//     earth: 1,
+//     mars: 1.8808158,
+//     jupiter: 11.862615,
+//     saturn: 29.447498,
+//     uranus: 84.016846,
+//     neptune: 164.79132
+//     }
+
+//    return Number((seconds/31557600/planetRatios[planet]).toFixed(2))
+
+
+// }
+
+// interface Player {
+
+// }
+export class DnDCharacter {
+
+    public static generateAbilityScore(): number {
+      let sum: number;
+
+      do {
+        const diceValues: number[] = [];
+
+        for (let i = 0; i < 4; i++) {
+          diceValues.push(Math.floor(Math.random() * 6) + 1);
+        }
+
+        diceValues.sort((a, b) => b - a);
+        sum = diceValues[0] + diceValues[1] + diceValues[2];
+
+      } while (isNaN(sum));
+
+      return sum;
+    }
+
+    public static getModifierFor(abilityValue: number): number {
+      if (typeof abilityValue !== 'number' || isNaN(abilityValue)) {
+        return 0;
+      }
+
+      return Math.floor((abilityValue - 10) / 2);
+    }
+
+    public static generateCharacter(): { [key: string]: number } {
+      const abilities: string[] = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
+      const abilityScores: { [key: string]: number } = {};
+
+      for (const ability of abilities) {
+        abilityScores[ability] = this.generateAbilityScore();
+      }
+
+      const conModifier: number = this.getModifierFor(abilityScores['Constitution']);
+      const hitpoints: number = 10 + conModifier;
+
+      return {
+        'Strength': abilityScores['Strength'],
+        'Dexterity': abilityScores['Dexterity'],
+        'Constitution': abilityScores['Constitution'],
+        'Intelligence': abilityScores['Intelligence'],
+        'Wisdom': abilityScores['Wisdom'],
+        'Charisma': abilityScores['Charisma'],
+        'Constitution Modifier': conModifier,
+        'Hitpoints': hitpoints,
+      };
+    }
+  }
+
+  // Example usage:
+  const characterData = DnDCharacter.generateCharacter();
+  console.log(characterData);

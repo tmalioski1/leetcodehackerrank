@@ -746,3 +746,64 @@
 #     return root
 
 
+# class TreeNode:
+#     def __init__(self, x):
+#      self.val = x
+#      self.left = None
+#      self.right = None
+
+# def lowestCommonAncestor(root, p, q):
+#    def valArray
+
+# def diameterOfBinaryTree(root) :
+#             diameter = 0
+#             def depth(node):
+#                 nonlocal diameter
+#                 if node is None:
+#                     return 0
+
+#                 left = depth(node.left)
+#                 right = depth(node.right)
+
+#                 diameter = max(diameter, left + right)
+#                 return 1 + max(left, right)
+
+#             depth(root)
+#             return diameter
+
+
+# def commonSubstring(a, b):
+#     for i in range(len(a)):
+#         element_a = a[i]
+#         element_b = b[i]
+
+#         found_common_char = False
+
+#         for char in element_a:
+#             if char in element_b:
+#                 print('YES')
+#                 found_common_char = True
+#                 break
+
+#         if not found_common_char:
+#             print('NO')
+
+#create a set
+#add last item in requests array to set
+#iterate backwards, adding new items to set
+#return length of set
+def getLatestKRequests(requests, K):
+    unique = []
+    unique.append(requests[len(requests)-1])
+    for i in range(len(requests) -2, 0, -1):
+        if len(unique) == K:
+            break
+        el = requests[i]
+        if el not in unique:
+            unique.append(el)
+    return unique
+
+
+
+
+print(getLatestKRequests(['item3', 'item2', 'item1', 'item2', 'item3'], 3))
