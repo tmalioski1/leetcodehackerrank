@@ -536,20 +536,38 @@ class ListNode {
 //   return root
 // }
 
+const counter = (word) => {
+  let count = {}
+  for (let i = 0; i <= word.length; i++) {
+    let char = word[i]
+    if (char !== undefined) {  // Skip undefined characters
+      if (count[char] >= 1) {
+        count[char] += 1
+      } else {
+        count[char] = 1
+      }
+    }
+  }
+  return count
+}
 
-/**
- * Definition for a binary tree node.
- function TreeNode(val, left, right) {
-    this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var maxDepth = function(root) {
 
+const countCharacters = (words, chars) => {
+  let total = 0;
+  let count = counter(chars);
+  console.log('count', count);
 
+  words.forEach((word) => {
+    let wordCount = counter(word);
+    console.log('wordCount', wordCount);
+
+    if (Array.from(word).every((char) => wordCount[char] <= count[char])) {
+      total += word.length;
+    }
+  });
+
+  return total;
 };
+
+
+console.log(countCharacters(["cat","bt","hat","tree"], 'atach'))

@@ -28,8 +28,6 @@
 //   }
 //   let gigaNums = nums / 1000000000
 //   return `${gigaNums} gigaohms`
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DnDCharacter = void 0;
 //   }
 // const Colors: string[]= ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'grey', 'white']
 // console.log(decodedResistorValue(['orange', 'orange', 'black']))
@@ -94,46 +92,77 @@ exports.DnDCharacter = void 0;
 // }
 // interface Player {
 // }
-class DnDCharacter {
-    static generateAbilityScore() {
-        let sum;
-        do {
-            const diceValues = [];
-            for (let i = 0; i < 4; i++) {
-                diceValues.push(Math.floor(Math.random() * 6) + 1);
-            }
-            diceValues.sort((a, b) => b - a);
-            sum = diceValues[0] + diceValues[1] + diceValues[2];
-        } while (isNaN(sum));
-        return sum;
-    }
-    static getModifierFor(abilityValue) {
-        if (typeof abilityValue !== 'number' || isNaN(abilityValue)) {
-            return 0;
-        }
-        return Math.floor((abilityValue - 10) / 2);
-    }
-    static generateCharacter() {
-        const abilities = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
-        const abilityScores = {};
-        for (const ability of abilities) {
-            abilityScores[ability] = this.generateAbilityScore();
-        }
-        const conModifier = this.getModifierFor(abilityScores['Constitution']);
-        const hitpoints = 10 + conModifier;
-        return {
-            'Strength': abilityScores['Strength'],
-            'Dexterity': abilityScores['Dexterity'],
-            'Constitution': abilityScores['Constitution'],
-            'Intelligence': abilityScores['Intelligence'],
-            'Wisdom': abilityScores['Wisdom'],
-            'Charisma': abilityScores['Charisma'],
-            'Constitution Modifier': conModifier,
-            'Hitpoints': hitpoints,
-        };
-    }
-}
-exports.DnDCharacter = DnDCharacter;
-// Example usage:
-const characterData = DnDCharacter.generateCharacter();
-console.log(characterData);
+// export class DnDCharacter {
+//     public static generateAbilityScore(): number {
+//       let sum: number;
+//       do {
+//         const diceValues: number[] = [];
+//         for (let i = 0; i < 4; i++) {
+//           diceValues.push(Math.floor(Math.random() * 6) + 1);
+//         }
+//         diceValues.sort((a, b) => b - a);
+//         sum = diceValues[0] + diceValues[1] + diceValues[2];
+//       } while (isNaN(sum));
+//       return sum;
+//     }
+//     public static getModifierFor(abilityValue: number): number {
+//       if (typeof abilityValue !== 'number' || isNaN(abilityValue)) {
+//         return 0;
+//       }
+//       return Math.floor((abilityValue - 10) / 2);
+//     }
+//     public static generateCharacter(): { [key: string]: number } {
+//       const abilities: string[] = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
+//       const abilityScores: { [key: string]: number } = {};
+//       for (const ability of abilities) {
+//         abilityScores[ability] = this.generateAbilityScore();
+//       }
+//       const conModifier: number = this.getModifierFor(abilityScores['Constitution']);
+//       const hitpoints: number = 10 + conModifier;
+//       return {
+//         'Strength': abilityScores['Strength'],
+//         'Dexterity': abilityScores['Dexterity'],
+//         'Constitution': abilityScores['Constitution'],
+//         'Intelligence': abilityScores['Intelligence'],
+//         'Wisdom': abilityScores['Wisdom'],
+//         'Charisma': abilityScores['Charisma'],
+//         'Constitution Modifier': conModifier,
+//         'Hitpoints': hitpoints,
+//       };
+//     }
+//   }
+//   // Example usage:
+//   const characterData = DnDCharacter.generateCharacter();
+//   console.log(characterData);
+// const counter = <T>(iterable: Iterable<T>): Record<string, number> => {
+//   let count: Record<string, number> = {};
+//   for (const item of iterable) {
+//     const char = String(item); // Convert the item to a string
+//     if (char !== undefined) {
+//       if (count[char] !== undefined && count[char] >= 1) {
+//         count[char] += 1;
+//       } else {
+//         count[char] = 1;
+//       }
+//     }
+//   }
+//   return count;
+// };
+//   const countCharacters = (words: string[], chars: string): Number => {
+//     let total = 0;
+//     let count = counter(chars);
+//     console.log('count', count);
+//     words.forEach((word) => {
+//       let wordCount = counter(word);
+//       console.log('wordCount', wordCount);
+//       if (Array.from(word).every((char) => wordCount[char] <= count[char])) {
+//         total += word.length;
+//       }
+//     });
+//     return total;
+//   };
+//   console.log(countCharacters(["cat","bt","hat","tree"], 'atach'))
+// const score = (x: number, y: number): number => {
+//   const distance = Math.sqrt(x ** 2 + y ** 2)
+// }
+console.log(2 ** 3);

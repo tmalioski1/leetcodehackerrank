@@ -788,22 +788,99 @@
 #         if not found_common_char:
 #             print('NO')
 
-#create a set
-#add last item in requests array to set
-#iterate backwards, adding new items to set
-#return length of set
-def getLatestKRequests(requests, K):
-    unique = []
-    unique.append(requests[len(requests)-1])
-    for i in range(len(requests) -2, 0, -1):
-        if len(unique) == K:
-            break
-        el = requests[i]
-        if el not in unique:
-            unique.append(el)
-    return unique
+# def commonSubstring(a, b):
+#     for s1, s2 in zip(a,b):
+#         letters = set(s1)
+#         found = False
+
+#         for letter in s2:
+#             if letter in letters:
+#                 print('YES')
+#                 found = True
+#                 break
+#         if not found:
+#             print('NO')
 
 
 
+# def getLatestKRequests(requests, K):
+#     res = list()
+#     res.append(requests[len(requests)-1])
+#     for i in range(len(requests) -2, 0, -1):
+#         if len(res) == K:
+#             break
+#         req = requests[i]
+#         if req not in res:
+#             res.append(req)
+#     return res
 
-print(getLatestKRequests(['item3', 'item2', 'item1', 'item2', 'item3'], 3))
+
+# def getLatestKRequests(requests, K):
+#     seen = set()
+#     res = list()
+#     for req in requests[::1]:
+#         if req not in seen:
+#             seen.add(req)
+#             res.append(req)
+
+#         if len(res) == K:
+#             break
+#     return res
+
+
+
+# print(getLatestKRequests(['item3', 'item2', 'item1', 'item2', 'item3'], 3))
+# from collections import Counter
+
+# def countCharacters(words, chars):
+#         total = 0
+#         count = Counter(chars)
+#         print('count---', count)
+
+
+#         for word in words:
+#             word_count = Counter(word)
+#             print('word_count---', word_count)
+
+#             if all(word_count[char] <= count[char] for char in word):
+#                 total += len(word)
+
+
+#         return total
+# print(countCharacters(["cat","bt","hat","tree"], 'atach'))
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+def save_dartboard_image():
+    # Create a figure and axis
+    fig, ax = plt.subplots()
+
+    # Define the circles
+    outer_circle = plt.Circle((0, 0), 10, edgecolor='black', facecolor='none', label='Outer Circle (1 point)')
+    middle_circle = plt.Circle((0, 0), 5, edgecolor='black', facecolor='none', label='Middle Circle (5 points)')
+    inner_circle = plt.Circle((0, 0), 1, edgecolor='black', facecolor='none', label='Inner Circle (10 points)')
+
+    # Add the circles to the plot
+    ax.add_patch(outer_circle)
+    ax.add_patch(middle_circle)
+    ax.add_patch(inner_circle)
+
+    # Set axis limits and labels
+    ax.set_xlim(-12, 12)
+    ax.set_ylim(-12, 12)
+    ax.set_aspect('equal', 'box')
+    ax.set_xlabel('X-axis')
+    ax.set_ylabel('Y-axis')
+
+    # Add legend
+    ax.legend()
+
+    # Save the plot as an image
+    plt.grid(True)
+    plt.axhline(0, color='black', linewidth=0.5)
+    plt.axvline(0, color='black', linewidth=0.5)
+    plt.savefig('dartboard.png')
+
+# Call the function to save the dartboard image
+save_dartboard_image()
