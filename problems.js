@@ -536,38 +536,39 @@ class ListNode {
 //   return root
 // }
 
-const counter = (word) => {
-  let count = {}
-  for (let i = 0; i <= word.length; i++) {
-    let char = word[i]
-    if (char !== undefined) {  // Skip undefined characters
-      if (count[char] >= 1) {
-        count[char] += 1
-      } else {
-        count[char] = 1
-      }
-    }
-  }
-  return count
-}
+// const counter = (word) => {
+//   let count = {}
+//   for (let i = 0; i <= word.length; i++) {
+//     let char = word[i]
+//     if (char !== undefined) {  // Skip undefined characters
+//       if (count[char] >= 1) {
+//         count[char] += 1
+//       } else {
+//         count[char] = 1
+//       }
+//     }
+//   }
+//   return count
+// }
 
 
-const countCharacters = (words, chars) => {
-  let total = 0;
-  let count = counter(chars);
-  console.log('count', count);
+// const countCharacters = (words, chars) => {
+//   let total = 0;
+//   let count = counter(chars);
+//   console.log('count', count);
 
-  words.forEach((word) => {
-    let wordCount = counter(word);
-    console.log('wordCount', wordCount);
+//   words.forEach((word) => {
+//     let wordCount = counter(word);
+//     console.log('wordCount', wordCount);
 
-    if (Array.from(word).every((char) => wordCount[char] <= count[char])) {
-      total += word.length;
-    }
-  });
+//     if (Array.from(word).every((char) => wordCount[char] <= count[char])) {
+//       total += word.length;
+//     }
+//   });
 
-  return total;
-};
+//   return total;
+// };
 
 
-console.log(countCharacters(["cat","bt","hat","tree"], 'atach'))
+// console.log(countCharacters(["cat","bt","hat","tree"], 'atach'))
+

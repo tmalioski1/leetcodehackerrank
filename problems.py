@@ -772,21 +772,22 @@
 #             return diameter
 
 
-# def commonSubstring(a, b):
-#     for i in range(len(a)):
-#         element_a = a[i]
-#         element_b = b[i]
+def commonSubstring(a, b):
+    for i in range(len(a)):
+        element_a = a[i]
+        element_b = b[i]
 
-#         found_common_char = False
+        found_common_char = False
 
-#         for char in element_a:
-#             if char in element_b:
-#                 print('YES')
-#                 found_common_char = True
-#                 break
+        for char in element_a:
+            if char in element_b:
+                print('YES')
+                found_common_char = True
+                break
 
-#         if not found_common_char:
-#             print('NO')
+        if not found_common_char:
+            print('NO')
+commonSubstring(['hello', 'world'], ['he', 'bye'])
 
 # def commonSubstring(a, b):
 #     for s1, s2 in zip(a,b):
@@ -848,39 +849,3 @@
 
 #         return total
 # print(countCharacters(["cat","bt","hat","tree"], 'atach'))
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-def save_dartboard_image():
-    # Create a figure and axis
-    fig, ax = plt.subplots()
-
-    # Define the circles
-    outer_circle = plt.Circle((0, 0), 10, edgecolor='black', facecolor='none', label='Outer Circle (1 point)')
-    middle_circle = plt.Circle((0, 0), 5, edgecolor='black', facecolor='none', label='Middle Circle (5 points)')
-    inner_circle = plt.Circle((0, 0), 1, edgecolor='black', facecolor='none', label='Inner Circle (10 points)')
-
-    # Add the circles to the plot
-    ax.add_patch(outer_circle)
-    ax.add_patch(middle_circle)
-    ax.add_patch(inner_circle)
-
-    # Set axis limits and labels
-    ax.set_xlim(-12, 12)
-    ax.set_ylim(-12, 12)
-    ax.set_aspect('equal', 'box')
-    ax.set_xlabel('X-axis')
-    ax.set_ylabel('Y-axis')
-
-    # Add legend
-    ax.legend()
-
-    # Save the plot as an image
-    plt.grid(True)
-    plt.axhline(0, color='black', linewidth=0.5)
-    plt.axvline(0, color='black', linewidth=0.5)
-    plt.savefig('dartboard.png')
-
-# Call the function to save the dartboard image
-save_dartboard_image()

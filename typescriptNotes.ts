@@ -212,3 +212,42 @@
 //   }
 
 // }
+
+// const getLatestKRequests = (requests: string[], K: number): string[] => {
+//   let seen = new Set()
+//   let res = new Array()
+//   for (let i = requests.length -1; i >= 0; i--) {
+//     let req = requests[i]
+//     console.log('this is the req', req)
+//     if (!seen.has(req)) {
+//       seen.add(req)
+//       res.push(req)
+//     }
+
+//     if (res.length === K) {
+//       break
+//     }
+
+//   }
+//   return res
+// }
+// console.log(getLatestKRequests(['item3', 'item2', 'item1', 'item2', 'item3'], 4))
+const commonSubstring = (a: string[], b: string[]): void => {
+   for (let i = 0; i <a.length; i++) {
+    let elementA = a[i]
+    let elementB = b[i]
+    let foundCommonChar = false
+    for (let i = 0; i <elementA.length; i++) {
+      let char = elementA[i]
+      if (elementB.includes(char)) {
+        console.log('YES')
+        foundCommonChar= true
+        break
+      }
+    }
+    if (!foundCommonChar) {
+      console.log('NO')
+    }
+   }
+}
+commonSubstring(['hello', 'world'], ['he', 'bye'])

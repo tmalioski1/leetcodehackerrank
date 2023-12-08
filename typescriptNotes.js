@@ -164,5 +164,49 @@
 //   console.log(countCharacters(["cat","bt","hat","tree"], 'atach'))
 // const score = (x: number, y: number): number => {
 //   const distance = Math.sqrt(x ** 2 + y ** 2)
+//   if (distance <= 1) {
+//     return 10
+//   } else if (distance <= 5){
+//     return 5
+//   } else if (distance <= 10) {
+//     return 1
+//   } else {
+//     return 0
+//   }
 // }
-console.log(2 ** 3);
+// const getLatestKRequests = (requests: string[], K: number): string[] => {
+//   let seen = new Set()
+//   let res = new Array()
+//   for (let i = requests.length -1; i >= 0; i--) {
+//     let req = requests[i]
+//     console.log('this is the req', req)
+//     if (!seen.has(req)) {
+//       seen.add(req)
+//       res.push(req)
+//     }
+//     if (res.length === K) {
+//       break
+//     }
+//   }
+//   return res
+// }
+// console.log(getLatestKRequests(['item3', 'item2', 'item1', 'item2', 'item3'], 4))
+const commonSubstring = (a, b) => {
+    for (let i = 0; i < a.length; i++) {
+        let elementA = a[i];
+        let elementB = b[i];
+        let foundCommonChar = false;
+        for (let i = 0; i < elementA.length; i++) {
+            let char = elementA[i];
+            if (elementB.includes(char)) {
+                console.log('YES');
+                foundCommonChar = true;
+                break;
+            }
+        }
+        if (!foundCommonChar) {
+            console.log('NO');
+        }
+    }
+};
+commonSubstring(['hello', 'world'], ['he', 'bye']);
