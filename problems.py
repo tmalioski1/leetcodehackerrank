@@ -725,6 +725,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 # from collections import deque
 # def invertTree(root: TreeNode) -> TreeNode:
 #     if not root:
@@ -772,22 +773,22 @@
 #             return diameter
 
 
-def commonSubstring(a, b):
-    for i in range(len(a)):
-        element_a = a[i]
-        element_b = b[i]
+# def commonSubstring(a, b):
+#     for i in range(len(a)):
+#         element_a = a[i]
+#         element_b = b[i]
 
-        found_common_char = False
+#         found_common_char = False
 
-        for char in element_a:
-            if char in element_b:
-                print('YES')
-                found_common_char = True
-                break
+#         for char in element_a:
+#             if char in element_b:
+#                 print('YES')
+#                 found_common_char = True
+#                 break
 
-        if not found_common_char:
-            print('NO')
-commonSubstring(['hello', 'world'], ['he', 'bye'])
+#         if not found_common_char:
+#             print('NO')
+# commonSubstring(['hello', 'world'], ['he', 'bye'])
 
 # def commonSubstring(a, b):
 #     for s1, s2 in zip(a,b):
@@ -849,3 +850,43 @@ commonSubstring(['hello', 'world'], ['he', 'bye'])
 
 #         return total
 # print(countCharacters(["cat","bt","hat","tree"], 'atach'))
+
+# def isPangram (stringy):
+#     return len(set(filter(str.isalpha, stringy.lower()))) == 26
+
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# from collections import deque
+# def list_to_tree(lst):
+#     if not lst:
+#         return None
+
+#     nodes = [None if val is None else TreeNode(val) for val in lst]
+#     for i in range(len(nodes)):
+#         if nodes[i] is not None:
+#             left_child_index = 2 * i + 1
+#             right_child_index = 2 * i + 2
+#             if left_child_index < len(nodes):
+#                 nodes[i].left = nodes[left_child_index]
+#             if right_child_index < len(nodes):
+#                 nodes[i].right = nodes[right_child_index]
+
+#     return nodes[0]
+
+# def isBalanced(root):
+#     def dfs(root):
+#         if not root: return [True, 0]
+
+#         left, right = dfs(root.left), dfs(root.right)
+#         balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
+
+#         return [balanced, 1 + max(left[1], right[1])]
+
+#     return dfs(root)[0]
+
+# tree_root = list_to_tree([1,2,2,3,3,None,None,4,4])
+
+# print(isBalanced(tree_root))

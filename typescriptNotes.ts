@@ -232,22 +232,40 @@
 //   return res
 // }
 // console.log(getLatestKRequests(['item3', 'item2', 'item1', 'item2', 'item3'], 4))
-const commonSubstring = (a: string[], b: string[]): void => {
-   for (let i = 0; i <a.length; i++) {
-    let elementA = a[i]
-    let elementB = b[i]
-    let foundCommonChar = false
-    for (let i = 0; i <elementA.length; i++) {
-      let char = elementA[i]
-      if (elementB.includes(char)) {
-        console.log('YES')
-        foundCommonChar= true
-        break
-      }
-    }
-    if (!foundCommonChar) {
-      console.log('NO')
-    }
-   }
-}
-commonSubstring(['hello', 'world'], ['he', 'bye'])
+// const commonSubstring = (a: string[], b: string[]): void => {
+//    for (let i = 0; i <a.length; i++) {
+//     let elementA = a[i]
+//     let elementB = b[i]
+//     let foundCommonChar = false
+//     for (let i = 0; i <elementA.length; i++) {
+//       let char = elementA[i]
+//       if (elementB.includes(char)) {
+//         console.log('YES')
+//         foundCommonChar= true
+//         break
+//       }
+//     }
+//     if (!foundCommonChar) {
+//       console.log('NO')
+//     }
+//    }
+// }
+// commonSubstring(['hello', 'world'], ['he', 'bye'])
+
+// const isPangram = (stringy: string): boolean => {
+//     const newString = stringy.toLowerCase()
+//     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+//     for (let i = 0; i < alphabet.length; i++) {
+//         let letter = alphabet[i]
+//         if (!newString.includes(letter)) {
+//             return false
+//         }
+//     }
+//     return true
+// }
+
+
+// const isPangram = (stringy: string): boolean => {
+//     return new Set(stringy.toLowerCase().replace(/[^a-z]/g, '')).size === 26
+// }
+
