@@ -268,4 +268,3 @@
 // const isPangram = (stringy: string): boolean => {
 //     return new Set(stringy.toLowerCase().replace(/[^a-z]/g, '')).size === 26
 // }
-

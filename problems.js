@@ -572,3 +572,104 @@ class ListNode {
 
 // console.log(countCharacters(["cat","bt","hat","tree"], 'atach'))
 
+// function TreeNode(val, left, right) {
+//   this.val = (val===undefined ? 0 : val)
+//    this.left = (left===undefined ? null : left)
+//   this.right = (right===undefined ? null : right)
+//   }
+// f
+
+// const levelOrder = (root) => {
+//   if (!root) {
+//     return [];
+//   } else {
+//     const queue = [root];
+//     const orderList = [];
+
+//     while (queue.length > 0) {
+//       const levelSubArray = [];
+//       const levelSize = queue.length;
+
+//       for (let i = 0; i < levelSize; i++) {
+//         let node = queue.shift();
+//         levelSubArray.push(node.val);
+
+//         if (node.left) {
+//           queue.push(node.left);
+//         }
+
+//         if (node.right) {
+//           queue.push(node.right);
+//         }
+//       }
+
+//       orderList.push(levelSubArray);
+//     }
+
+//     return orderList;
+//   }
+
+// }
+
+// const rightSideView = (root) => {
+//   if (!root) {
+//     return []
+//   } else {
+//     const queue = new Array()
+//     queue.push(root)
+//     const rightList = []
+
+//     while (queue.length >0) {
+//       let levelSize = queue.length
+
+//       for (let i = 0; i < levelSize; i++) {
+//         let node = queue.shift()
+
+//         if (i === levelSize -1) {
+//           rightList.push(node.val)
+//         }
+
+//         if (node.left != null) {
+//           queue.push(node.left)
+//         }
+
+//         if (node.right != null) {
+//           queue.push(node.right)
+//         }
+//       }
+
+
+//     }
+//     return rightList
+//   }
+// }
+const onesMinusZeros = (grid) => {
+  const ROWS = grid.length;
+  const COLS = grid[0].length;
+
+  let difference = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+
+  let rowOnes = Array(ROWS).fill(0);
+  let colOnes = Array(COLS).fill(0);
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      if (grid[r][c] === 1) {
+        rowOnes[r]++;
+        colOnes[c]++;
+      }
+    }
+  }
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      difference[r][c] =
+        rowOnes[r] + colOnes[c] - (ROWS - rowOnes[r]) - (COLS - colOnes[c]);
+    }
+  }
+
+  return difference;
+};
+
+
+console.log(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))

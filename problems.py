@@ -949,7 +949,7 @@ from collections import deque
 #         else:
 #             return curr
 
-# from collections import deque
+from collections import deque
 # def levelOrder(root):
 #         if not root:
 #             return []
@@ -976,3 +976,52 @@ from collections import deque
 #                 order_list.append(level_sub_array)
 
 #             return order_list
+def rightSideView(root):
+     if not root:
+            return []
+
+     queue = deque()
+     queue.append(root)
+     right_list = []
+
+     while queue:
+        level_size = len(queue)
+
+        for i in range(level_size):
+            node = queue.popleft()
+
+            if i == level_size - 1:
+                    right_list.append(node.val)
+
+            if node.left:
+                    queue.append(node.left)
+            if node.right:
+                    queue.append(node.right)
+
+     return right_list
+
+
+def onesMinusZeros(grid):
+        ROWS = len(grid)
+        COLS = len(grid[0])
+
+        difference = [[0 for _ in range(COLS)] for _ in range(ROWS)]
+
+        row_ones = [0]*ROWS
+        col_ones = [0]*COLS
+
+        print(row_ones, col_ones)
+
+        for r in range(ROWS):
+            for c in range(COLS):
+                if grid[r][c] == 1:
+                    row_ones[r] += 1
+                    col_ones[c] += 1
+
+        for r in range(ROWS):
+            for c in range(COLS):
+                difference[r][c] = row_ones[r] + col_ones[c] - (ROWS-row_ones[r]) - (COLS-col_ones[c])
+
+        return difference
+
+print(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))
