@@ -890,3 +890,89 @@
 # tree_root = list_to_tree([1,2,2,3,3,None,None,4,4])
 
 # print(isBalanced(tree_root))
+# def isSameTree(p, q):
+#         if not p and not q:
+#             return True
+#         elif not p or not q:
+#             return False
+#         else:
+#             return (
+#                 p.val == q.val
+#                 and isSameTree(p.left, q.left)
+#                 and isSameTree(p.right, q.right)
+#  )
+
+# def issubtree(root, subroot):
+#     stack = []
+#     stack.append(root)
+#     while len(stack) > 0:
+#         node = stack.pop()
+#         if isSameTree(node, subroot):
+#              return True
+#         else:
+#              stack.append(node.right)
+#              stack.append(node.left)
+#     return False
+
+from collections import deque
+# def lowestCommonAncestor(root, p, q):
+#     def isAncestor(root, target):
+#         if root is None:
+#             return False
+
+#         if root == target:
+#             return True
+
+#         left_result = isAncestor(root.left, target)
+#         right_result = isAncestor(root.right, target)
+
+#         return left_result or right_result
+#     ancestors = list()
+#     queue = deque()
+#     queue.append(root)
+#     while queue:
+#         node = queue.popleft()
+#         if isAncestor(node, p) and isAncestor(node, q):
+#             ancestors.append(node)
+#         if node.left:
+#             queue.append(node.left)
+#         if node.right:
+#             queue.append(node.right)
+#     return ancestors[0]
+# def lowestCommonAcnestor(root, p, q):
+#     curr = root
+#     while curr:
+#         if p.val > curr.val and q.val > curr.val:
+#             curr = curr.right
+#         elif p.val < curr.val and q.val < curr.val:
+#             curr = curr.left
+#         else:
+#             return curr
+
+# from collections import deque
+# def levelOrder(root):
+#         if not root:
+#             return []
+
+#         else:
+#             queue = deque()
+#             queue.append(root)
+#             order_list = list()
+
+#             while queue:
+
+#                 level_sub_array = []
+
+#                 for _ in range(len(queue)):
+#                     node = queue.popleft()
+#                     level_sub_array.append(node.val)
+
+#                     if node.left:
+#                         queue.append(node.left)
+
+#                     if node.right:
+#                         queue.append(node.right)
+
+#                 order_list.append(level_sub_array)
+
+#             return order_list
