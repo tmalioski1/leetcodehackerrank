@@ -643,33 +643,74 @@ class ListNode {
 //     return rightList
 //   }
 // }
-const onesMinusZeros = (grid) => {
-  const ROWS = grid.length;
-  const COLS = grid[0].length;
 
-  let difference = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
 
-  let rowOnes = Array(ROWS).fill(0);
-  let colOnes = Array(COLS).fill(0);
+// const onesMinusZeros = (grid) => {
+//   const ROWS = grid.length;
+//   const COLS = grid[0].length;
 
-  for (let r = 0; r < ROWS; r++) {
-    for (let c = 0; c < COLS; c++) {
-      if (grid[r][c] === 1) {
-        rowOnes[r]++;
-        colOnes[c]++;
+//   let difference = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+
+//   let rowOnes = Array(ROWS).fill(0);
+//   let colOnes = Array(COLS).fill(0);
+
+//   for (let r = 0; r < ROWS; r++) {
+//     for (let c = 0; c < COLS; c++) {
+//       if (grid[r][c] === 1) {
+//         rowOnes[r]++;
+//         colOnes[c]++;
+//       }
+//     }
+//   }
+
+//   for (let r = 0; r < ROWS; r++) {
+//     for (let c = 0; c < COLS; c++) {
+//       difference[r][c] =
+//         rowOnes[r] + colOnes[c] - (ROWS - rowOnes[r]) - (COLS - colOnes[c]);
+//     }
+//   }
+
+//   return difference;
+// };
+
+
+// console.log(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))
+const adjList = {
+  1: [2, 5],
+  2: [1, 3, 5],
+  3: [2, 4],
+  4: [3, 5, 6],
+  5: [1, 2, 4],
+  6: [4]
+}
+
+function printBreadthFirst(start) {
+  const queue = new Array()
+  queue.push(start)
+  const visitedSet = new Set()
+  visitedSet.add(start)
+
+  while (queue.length > 0) {
+    let node = queue.shift()
+    console.log(node)
+    for (let i = 0; i < adjList[node].length; i++) {
+      let neighbor = adjList[node][i]
+      if (!visitedSet.has(neighbor)){
+        queue.push(neighbor)
+        visitedSet.add(neighbor)
       }
-    }
+
   }
 
-  for (let r = 0; r < ROWS; r++) {
-    for (let c = 0; c < COLS; c++) {
-      difference[r][c] =
-        rowOnes[r] + colOnes[c] - (ROWS - rowOnes[r]) - (COLS - colOnes[c]);
-    }
-  }
+}
+}
 
-  return difference;
-};
-
-
-console.log(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))
+console.log("First Test:")
+printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
+                      // One possible solution:  3, 2, 4, 1, 5, 6
+console.log("Second Test:")
+printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
+                      // One possible solution:  6, 4, 3, 5, 2, 1
+console.log("Third Test:")
+printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
+                      // One possible solution:  4, 3, 5, 6, 2, 1
