@@ -914,7 +914,7 @@
 #              stack.append(node.left)
 #     return False
 
-from collections import deque
+# from collections import deque
 # def lowestCommonAncestor(root, p, q):
 #     def isAncestor(root, target):
 #         if root is None:
@@ -949,7 +949,7 @@ from collections import deque
 #         else:
 #             return curr
 
-from collections import deque
+# from collections import deque
 # def levelOrder(root):
 #         if not root:
 #             return []
@@ -1025,3 +1025,183 @@ from collections import deque
 #         return difference
 
 # print(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))
+
+
+# adjList = {
+#     1: [2, 5],
+#     2: [1, 3, 5],
+#     3: [2, 4],
+#     4: [3, 5, 6],
+#     5: [1, 2, 4],
+#     6: [4]
+# }
+
+# def printBreadthFirst(start):
+#     queue = deque()
+#     queue.append(start)
+#     visited_set = set()
+#     visited_set.add(start)
+
+#     while queue:
+#         node = queue.popleft()
+#         print(node)
+#         for number in adjList[node]:
+#             if number not in visited_set:
+#                 queue.append(number)
+#                 visited_set.add(number)
+
+
+# print("First Test:")
+# printBreadthFirst(3)
+
+# print("Second Test:")
+# printBreadthFirst(6)
+
+
+# print("Third Test:")
+# printBreadthFirst(4)
+
+# adjList = {
+#     1: [2, 5],
+#     2: [1, 3, 5],
+#     3: [2, 4],
+#     4: [3, 5, 6],
+#     5: [1, 2, 4],
+#     6: [4]
+# }
+
+# def printDepthFirst(start):
+#     stack = list()
+#     stack.append(start)
+#     visited_set = set()
+#     visited_set.add(start)
+
+#     while stack:
+#         node = stack.pop()
+#         print(node)
+#         for number in adjList[node]:
+#             if number not in visited_set:
+#                 stack.append(number)
+#                 visited_set.add(number)
+
+# print("First Test:")
+# printDepthFirst(3)
+
+
+# from collections import deque
+
+# adjList = {
+#     1: [2, 5],
+#     2: [1, 3, 5],
+#     3: [2, 4],
+#     4: [3, 5, 6],
+#     5: [1, 2, 4],
+#     6: []
+# }
+# def aShortestPath(start, end):
+#     queue = deque()
+#     queue.append([start])
+#     visited_set = set()
+#     visited_set.add(start)
+
+#     while queue:
+#         path = queue.popleft()
+#         last_node = path[-1]
+#         print('the last node', last_node)
+
+#         if last_node == end:
+#             return len(path) - 1
+#         else:
+#             for neighbor in adjList[last_node]:
+#                 if neighbor not in visited_set:
+#                     visited_set.add(neighbor)
+#                     copy_path = path[:]
+#                     copy_path.append(neighbor)
+#                     queue.append(copy_path)
+#     return False
+
+
+# print("First Test:")
+# print(aShortestPath(1, 3))
+# print("Second Test:")
+# print(aShortestPath(6,1))
+
+
+
+
+
+
+# def compressedString(message):
+#     new_str = ''
+#     seen_letter = ''
+#     count = 0
+
+#     for letter in message:
+
+#         if letter != seen_letter:
+#             new_str += f'{seen_letter}{count if count > 1 else ""}'
+#             seen_letter = letter
+#             count = 0
+
+#         count+=1
+
+#     new_str += f'{seen_letter}{count if count > 1 else ""}'
+
+#     return new_str
+
+
+
+
+
+
+# def minimumMoves(arr1, arr2):
+#     count = 0
+
+#     for i in range(len(arr1)):
+#         number1, number2 = str(arr1[i]), str(arr2[i])
+
+#         for i in range(len(number1)):
+#             digit1, digit2 = int(number1[i]), int(number2[i])
+
+#             if digit1 == digit2:
+#                 count +=0
+#             else:
+#                 count += abs(digit1 - digit2)
+
+#     return count
+
+# arr1 = [123, 956]
+# arr2 = [224, 456]
+
+# print(minimumMoves(arr1, arr2))
+
+#for each number, add all elements in array to subset_array
+#cut off last element of array each time, adding new array to queue
+#when queue is finished, add number to set
+
+
+# from collections import deque
+
+# def subsets(nums):
+#     subset_arrays = []
+#     queue = deque()
+#     queue.append(([], nums))
+
+#     while queue:
+#         current_subset, remaining_nums = queue.popleft()
+#         subset_arrays.append(current_subset)
+
+#         for i, num in enumerate(remaining_nums):
+#             queue.append((current_subset + [num], remaining_nums[i+1:]))
+
+#     return subset_arrays
+
+
+
+
+
+
+
+
+
+# print(subsets([1,2,3]))

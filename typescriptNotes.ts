@@ -300,53 +300,124 @@
 // console.log(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))
 
 
-type AdjacencyList = {
-    [key in number]: number[];
-}
+// type AdjacencyList = {
+//     [key in number]: number[];
+// }
 
-const adjList: AdjacencyList = {
-    1: [2, 5],
-    2: [1, 3, 5],
-    3: [2, 4],
-    4: [3, 5, 6],
-    5: [1, 2, 4],
-    6: [4]
-  }
+// const adjList: AdjacencyList = {
+//     1: [2, 5],
+//     2: [1, 3, 5],
+//     3: [2, 4],
+//     4: [3, 5, 6],
+//     5: [1, 2, 4],
+//     6: [4]
+//   }
 
-  function printBreadthFirst(start: number):void {
-    const queue = new Array()
-    queue.push(start)
-    const visitedSet = new Set()
-    visitedSet.add(start)
+//   function printBreadthFirst(start: number):void {
+//     const queue = new Array()
+//     queue.push(start)
+//     const visitedSet = new Set()
+//     visitedSet.add(start)
+
+//     while (queue.length > 0) {
+//       let node = queue.shift()
+//       console.log(node)
+
+//     let numarray = adjList[node]
+//     numarray.forEach((neighbor) => {
+//         if (!visitedSet.has(neighbor)){
+//             queue.push(neighbor)
+//             visitedSet.add(neighbor)
+//         }
+//     })
+
+//   }
+//   }
+
+//   console.log("First Test:")
+//   printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
+//                         // One possible solution:  3, 2, 4, 1, 5, 6
+//   console.log("Second Test:")
+//   printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
+//                         // One possible solution:  6, 4, 3, 5, 2, 1
+//   console.log("Third Test:")
+//   printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
+//                         // One possible solution:  4, 3, 5, 6, 2, 1
+
+
+// const compressedString = (message: string): string => {
+//   let newStr = '';
+//   let seenLetter = '';
+//   let count = 0;
+
+//   for (let i = 0; i < message.length; i++) {
+//     let letter = message[i];
+
+//     if (letter != seenLetter) {
+//       newStr += `${seenLetter}${count > 1 ? count : ''}`;
+//       seenLetter = letter;
+//       count = 1; // Reset count for the new letter
+//     } else {
+//       count += 1;
+//     }
+
+//     // Add the last letter and count after the last iteration of the loop
+//     if (i === message.length - 1) {
+//       newStr += `${seenLetter}${count > 1 ? count : ''}`;
+//     }
+//   }
+
+//   return newStr;
+// };
+
+// console.log(compressedString('aabcccd')); // Output: 'a2b1c3d1'
+
+
+// const minimumMoves = (arr1: number[], arr2: number[]):number => {
+//   let count = 0
+
+//   for (let i = 0; i < arr1.length; i++) {
+//     let number1 = String(arr1[i])
+//     let number2 = String(arr2[i])
+
+//     for (let j = 0; j <number1.length; j++) {
+//       let digit1 = Number(number1[j])
+//       let digit2 = Number(number2[j])
+
+//       if (digit1 === digit2) {
+//         count += 0
+//       } else {
+//         count += Math.abs(digit1 - digit2)
+//       }
+//     }
+//   }
+//   return count
+// }
+
+// const arr1 = [123, 956]
+// const arr2 = [224, 456]
+
+// console.log(minimumMoves(arr1, arr2))
+
+const subsets = (nums: number[]): number[][] => {
+    const subsetArrays: number[][]= [];
+    const queue: [number[], number[]][] = [];
+    queue.push([[], nums]);
 
     while (queue.length > 0) {
-      let node = queue.shift()
-      console.log(node)
+    let currentVars: [number[], number[]] = queue.shift()!;
+    let currentSubset: number[] = currentVars[0];
+    let remainingNums: number[] = currentVars[1];
+    subsetArrays.push(currentSubset);
 
-    //   for (let i = 0; i < adjList[node].length; i++) {
-    //     let neighbor = adjList[node][i]
-    //     if (!visitedSet.has(neighbor)){
-    //       queue.push(neighbor)
-    //       visitedSet.add(neighbor)
-    //     }
-    // }
-    let numarray = adjList[node]
-    numarray.forEach((neighbor) => {
-        if (!visitedSet.has(neighbor)){
-            queue.push(neighbor)
-            visitedSet.add(neighbor)
-        }
-    })
+      for (let i = 0; i < remainingNums.length; i++) {
+        queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
+      }
+    }
 
-  }
-  }
+    return subsetArrays;
+  };
 
-  console.log("First Test:")
-  printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
-                        // One possible solution:  3, 2, 4, 1, 5, 6
-  console.log("Second Test:")
-  printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
-                        // One possible solution:  6, 4, 3, 5, 2, 1
-  console.log("Third Test:")
-  printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
-                        // One possible solution:  4, 3, 5, 6, 2, 1
+const nums = [1, 2, 3];
+const result = subsets(nums);
+console.log(result);

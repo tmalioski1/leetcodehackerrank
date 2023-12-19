@@ -675,42 +675,217 @@ class ListNode {
 
 
 // console.log(onesMinusZeros([[0,1,1],[1,0,1],[0,0,1]]))
-const adjList = {
-  1: [2, 5],
-  2: [1, 3, 5],
-  3: [2, 4],
-  4: [3, 5, 6],
-  5: [1, 2, 4],
-  6: [4]
-}
 
-function printBreadthFirst(start) {
-  const queue = new Array()
-  queue.push(start)
-  const visitedSet = new Set()
-  visitedSet.add(start)
+// const adjList = {
+//   1: [2, 5],
+//   2: [1, 3, 5],
+//   3: [2, 4],
+//   4: [3, 5, 6],
+//   5: [1, 2, 4],
+//   6: [4]
+// }
+
+// function printBreadthFirst(start) {
+//   const queue = new Array()
+//   queue.push(start)
+//   const visitedSet = new Set()
+//   visitedSet.add(start)
+
+//   while (queue.length > 0) {
+//     let node = queue.shift()
+//     console.log(node)
+//     for (let i = 0; i < adjList[node].length; i++) {
+//       let neighbor = adjList[node][i]
+//       if (!visitedSet.has(neighbor)){
+//         queue.push(neighbor)
+//         visitedSet.add(neighbor)
+//       }
+
+//   }
+
+// }
+// }
+
+// console.log("First Test:")
+// printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
+                      // One possible solution:  3, 2, 4, 1, 5, 6
+// console.log("Second Test:")
+// printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
+//                       // One possible solution:  6, 4, 3, 5, 2, 1
+// console.log("Third Test:")
+// printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
+//                       // One possible solution:  4, 3, 5, 6, 2, 1
+
+
+// const adjList = {
+//   1: [2, 5],
+//   2: [1, 3, 5],
+//   3: [2, 4],
+//   4: [3, 5, 6],
+//   5: [1, 2, 4],
+//   6: [4]
+// }
+
+// function printDepthFirst(start) {
+//   const stack = new Array()
+//   stack.push(start)
+//   const visitedSet = new Set()
+//   visitedSet.add(start)
+//   const newArray = new Array()
+//   while (stack.length > 0) {
+//     let node = stack.pop()
+//     console.log(node)
+//     adjList[node].forEach((number) => {
+//       if (!visitedSet.has(number)) {
+//         stack.push(number)
+//         visitedSet.add(number)
+//       }
+//     })
+//   }
+
+// }
+
+// console.log("First Test:")
+// printDepthFirst(3);
+
+
+// const adjList = {
+//   1: [2, 5],
+//   2: [1, 3, 5],
+//   3: [2, 4],
+//   4: [3, 5, 6],
+//   5: [1, 2, 4],
+//   6: [4]
+// }
+
+// function printBreadthFirst(start) {
+//   const queue = new Array()
+//   queue.push(start)
+//   const visitedSet = new Set()
+//   visitedSet.add(start)
+//   const newArray = new Array()
+
+//   while (queue.length > 0) {
+//     let node = queue.shift()
+//     newArray.push(node)
+//     for (let i = 0; i < adjList[node].length; i++) {
+//       let neighbor = adjList[node][i]
+//       if (!visitedSet.has(neighbor)){
+//         queue.push(neighbor)
+//         visitedSet.add(neighbor)
+//       }
+
+//   }
+// }
+// return newArray
+// }
+
+// console.log("First Test:")
+// console.log(printBreadthFirst(3)); // Prints 1 through 6 in Breadth-first order, starting with 3
+//                       // One possible solution:  3, 2, 4, 1, 5, 6
+
+
+// const adjList = {
+//   1: [2, 5],
+//   2: [1, 3, 5],
+//   3: [2, 4],
+//   4: [3, 5],
+//   5: [1, 2, 4],
+//   6: []
+// }
+
+// function breadthFirstSearch(start, end) {
+//   const queue = new Array()
+//   queue.push(start)
+//   const visitedSet = new Set()
+//   visitedSet.add(start)
+
+//   while (queue.length > 0) {
+//     let node = queue.shift()
+
+//     if (node === end) {
+//       return true
+//     } else {
+//       adjList[node].forEach((number) => {
+//         if (!visitedSet.has(number)) {
+//           queue.push(number)
+//           visitedSet.add(number)
+//         }
+//       })
+//     }
+//   }
+// return false
+
+// }
+
+// console.log("First Test:");
+// console.log(breadthFirstSearch(1, 3)); // -> true
+// console.log("Second Test:");
+// console.log(breadthFirstSearch(4, 1)); // -> true
+// console.log("Third Test:");
+// console.log(breadthFirstSearch(6, 1)); // -> false
+
+
+// const adjList = {
+//   1: [2, 5],
+//   2: [1, 3, 5],
+//   3: [2, 4],
+//   4: [3, 5],
+//   5: [1, 2, 4],
+//   6: []
+// }
+
+// function aShortestPath(start, end) {
+//   const queue = new Array()
+//   queue.push([start])
+//   const visitedSet = new Set()
+//   visitedSet.add(start)
+
+//   while (queue.length > 0) {
+//     let path = queue.shift()
+//     let lastNode = path[path.length -1]
+
+//     if (lastNode === end) {
+//       return path.length -1
+//     } else {
+//       adjList[lastNode].forEach((neighbor) => {
+//         if (!visitedSet.has(neighbor)){
+//           visitedSet.add(neighbor)
+//           copyPath = [...path]
+//           copyPath.push(neighbor)
+//           queue.push(copyPath)
+//         }
+//       })
+//     }
+//   }
+// return false
+// }
+
+// console.log("First Test:");
+// console.log(aShortestPath(1, 3)); // -> [ 1, 2, 3 ] (One possible solution)
+// console.log("Second Test:");
+// console.log(aShortestPath(6,1))
+
+
+const subsets = (nums) => {
+  const subsetArrays = [];
+  const queue = [];
+  queue.push([[], nums]);
 
   while (queue.length > 0) {
-    let node = queue.shift()
-    console.log(node)
-    for (let i = 0; i < adjList[node].length; i++) {
-      let neighbor = adjList[node][i]
-      if (!visitedSet.has(neighbor)){
-        queue.push(neighbor)
-        visitedSet.add(neighbor)
-      }
+    let currentVars = queue.shift();
+    let currentSubset = currentVars[0];
+    let remainingNums = currentVars[1];
+    subsetArrays.push(currentSubset);
 
+    for (let i = 0; i < remainingNums.length; i++) {
+      queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
+    }
   }
 
-}
-}
+  return subsetArrays;
+};
 
-console.log("First Test:")
-printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
-                      // One possible solution:  3, 2, 4, 1, 5, 6
-console.log("Second Test:")
-printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
-                      // One possible solution:  6, 4, 3, 5, 2, 1
-console.log("Third Test:")
-printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
-                      // One possible solution:  4, 3, 5, 6, 2, 1
+const nums = [1, 2, 3];
+const result = subsets(nums);
+console.log(result);
