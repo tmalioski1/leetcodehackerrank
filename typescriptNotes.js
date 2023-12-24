@@ -325,21 +325,46 @@
 // const arr1 = [123, 956]
 // const arr2 = [224, 456]
 // console.log(minimumMoves(arr1, arr2))
-const subsets = (nums) => {
-    const subsetArrays = [];
-    const queue = [];
-    queue.push([[], nums]);
-    while (queue.length > 0) {
-        let currentVars = queue.shift();
-        let currentSubset = currentVars[0];
-        let remainingNums = currentVars[1];
-        subsetArrays.push(currentSubset);
-        for (let i = 0; i < remainingNums.length; i++) {
-            queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
-        }
-    }
-    return subsetArrays;
+// const subsets = (nums: number[]): number[][] => {
+//     const subsetArrays: number[][]= [];
+//     const queue: [number[], number[]][] = [];
+//     queue.push([[], nums]);
+//     while (queue.length > 0) {
+//     let currentVars: [number[], number[]] = queue.shift()!;
+//     let currentSubset: number[] = currentVars[0];
+//     let remainingNums: number[] = currentVars[1];
+//     subsetArrays.push(currentSubset);
+//       for (let i = 0; i < remainingNums.length; i++) {
+//         queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
+//       }
+//     }
+//     return subsetArrays;
+//   };
+// const nums = [1, 2, 3];
+// const result = subsets(nums);
+// console.log(result);
+const sum = (array) => {
+    let total = 0;
+    array.forEach((number) => {
+        total += number;
+    });
+    return total;
 };
-const nums = [1, 2, 3];
-const result = subsets(nums);
-console.log(result);
+class DesktopDirectory {
+    constructor() {
+        this.config = {
+            default: {
+                encoding: 'utf-8',
+                permissions: 'drw-rw-rw-',
+            }
+        };
+    }
+    addFile(name) {
+        console.log(`Adding file: ${name}`);
+    }
+    showPreview(name) {
+        console.log(`Opening preview of file: ${name}`);
+    }
+}
+const Desktop = new DesktopDirectory();
+console.log(Desktop.config);

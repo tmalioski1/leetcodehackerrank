@@ -399,25 +399,95 @@
 
 // console.log(minimumMoves(arr1, arr2))
 
-const subsets = (nums: number[]): number[][] => {
-    const subsetArrays: number[][]= [];
-    const queue: [number[], number[]][] = [];
-    queue.push([[], nums]);
+// const subsets = (nums: number[]): number[][] => {
+//     const subsetArrays: number[][]= [];
+//     const queue: [number[], number[]][] = [];
+//     queue.push([[], nums]);
 
-    while (queue.length > 0) {
-    let currentVars: [number[], number[]] = queue.shift()!;
-    let currentSubset: number[] = currentVars[0];
-    let remainingNums: number[] = currentVars[1];
-    subsetArrays.push(currentSubset);
+//     while (queue.length > 0) {
+//     let currentVars: [number[], number[]] = queue.shift()!;
+//     let currentSubset: number[] = currentVars[0];
+//     let remainingNums: number[] = currentVars[1];
+//     subsetArrays.push(currentSubset);
 
-      for (let i = 0; i < remainingNums.length; i++) {
-        queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
-      }
-    }
+//       for (let i = 0; i < remainingNums.length; i++) {
+//         queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
+//       }
+//     }
 
-    return subsetArrays;
-  };
+//     return subsetArrays;
+//   };
 
-const nums = [1, 2, 3];
-const result = subsets(nums);
-console.log(result);
+// const nums = [1, 2, 3];
+// const result = subsets(nums);
+// console.log(result);
+
+const sum = (array: number[]): number => {
+  let total = 0
+  array.forEach((number) => {
+    total += number
+  })
+  return total
+}
+
+
+// const combinationSum = (candidates: number[], target: number): number[][] => {
+//   const subsetArrays: number[][] = [];
+//   const queue: [number[], number[]][] = [];
+//   queue.push([[], candidates])
+
+//   while (queue.length > 0) {
+//     let currentVars: [number[], number[]] = queue.shift()!;
+//     let currentSubset: number[] = currentVars[0];
+//     let remainingNums: number[] = currentVars[1];
+
+//     if (sum(currentSubset) === target) {
+//       subsetArrays.push(currentSubset);
+//     } else if (sum(currentSubset) < target) {
+//       for (let i = 0; i < remainingNums.length; i++) {
+//         let num = remainingNums[i];
+//         queue.push([currentSubset.concat(num), remainingNums.slice(i)]);
+//       }
+//     }
+//   }
+
+//   return subsetArrays;
+// }
+// let candidates = [2,3,6,7]
+// let target = 7
+// console.log(combinationSum(candidates, target))
+
+
+// interface Directory {
+//   addFile: (name: string) => void;
+//   // Define a config type member here
+//     config: {
+//     default: {
+//       encoding: string,
+//       permissions: string,
+//     }
+//   }
+// }
+
+// class DesktopDirectory implements Directory {
+//   config = {
+//     default: {
+//       encoding: 'utf-8',
+//       permissions: 'drw-rw-rw-',
+//     }
+//   }
+
+//   addFile(name: string) {
+//     console.log(`Adding file: ${name}`);
+//   }
+
+//   showPreview(name: string) {
+//     console.log(`Opening preview of file: ${name}`);
+//   }
+// }
+
+// const Desktop = new DesktopDirectory();
+
+// console.log(Desktop.config);
+
+

@@ -1198,10 +1198,113 @@
 
 
 
+# def combinationSum(candidates, target):
+#     subset_arrays = list()
+#     queue = deque()
+#     queue.append(([], candidates))
+
+#     while queue:
+#         current_subset, remaining_nums = queue.popleft()
+#         if sum(current_subset) == target:
+#             subset_arrays.append(current_subset)
+
+#         elif sum(current_subset) < target:
+#             for i, num in enumerate(remaining_nums):
+#                 queue.append((current_subset + [num], remaining_nums[i:]))
+
+
+#     return subset_arrays
+
+# candidates = [7, 2,3,6,]
+# target = 7
+
+# print(combinationSum(candidates, target))
+
+# from collections import defaultdict
+# def leastBricks(self, wall: List[List[int]]) -> int:
+#         gap_count = defaultdict(int)
+
+#         for row in wall:
+#             total = 0
+#             for brick in row[:-1]:
+#                 total += brick
+#                 gap_count[total] += 1
+
+#         gap_vals = gap_count.values()
+
+#         print(gap_count)
+#         return len(wall) if len(gap_vals) == 0 else len(wall) - max(gap_vals)
 
 
 
+# def numIslands(grid):
+#     def findNeighbors(node, matrix):
+#         [row, col] = node
+
+#         neighbors = [
+#         [row - 1, col],
+#         [row + 1, col],
+#         [row, col - 1],
+#         [row, col + 1],
+#         ]
 
 
+#         valid_neighbors = [
+#             current_node
+#             for current_node in neighbors
+#             if (
+#                 0 <= current_node[0] < len(matrix)
+#                 and 0 <= current_node[1] < len(matrix[0])
+#                 and matrix[current_node[0]][current_node[1]] == 1
+#             )
+#         ]
+#         return valid_neighbors
+from collections import deque
+def numIslands(grid):
+    
+    def findNeighbors(node, matrix):
+        [row, col] = node
 
-# print(subsets([1,2,3]))
+        neighbors = [
+            [row - 1, col],
+            [row + 1, col],
+            [row, col - 1],
+            [row, col + 1],
+        ]
+
+        valid_neighbors = [
+            tuple(current_node)
+            for current_node in neighbors
+            if (
+                0 <= current_node[0] < len(matrix)
+                and 0 <= current_node[1] < len(matrix[0])
+                and int(matrix[current_node[0]][current_node[1]]) == 1
+            )
+        ]
+        return valid_neighbors
+
+    islands_count = 0
+    visited = set()
+
+    for row in range(len(grid)):
+        for column in range(len(grid[row])):
+            node = [row, column]
+            if tuple(node) not in visited and int(grid[row][column]) == 1:
+                islands_count += 1
+                visited.add(tuple(node))
+
+                queue = deque([node])
+                while queue:
+                    current_node = queue.popleft()
+                    neighbors = findNeighbors(current_node, grid)
+                    for neighbor in neighbors:
+                        if neighbor not in visited:
+                            queue.append(neighbor)
+                            visited.add(neighbor)
+
+    return islands_count
+
+print(numIslands([["1", "1", "1", "1", "0"],
+                 ["1", "1", "0", "1", "0"],
+                 ["1", "1", "0", "0", "0"],
+                 ["0", "0", "0", "0", "0"]]))

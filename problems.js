@@ -867,25 +867,73 @@ class ListNode {
 // console.log(aShortestPath(6,1))
 
 
-const subsets = (nums) => {
-  const subsetArrays = [];
-  const queue = [];
-  queue.push([[], nums]);
+// const subsets = (nums) => {
+//   const subsetArrays = [];
+//   const queue = [];
+//   queue.push([[], nums]);
 
-  while (queue.length > 0) {
-    let currentVars = queue.shift();
-    let currentSubset = currentVars[0];
-    let remainingNums = currentVars[1];
-    subsetArrays.push(currentSubset);
+//   while (queue.length > 0) {
+//     let currentVars = queue.shift();
+//     let currentSubset = currentVars[0];
+//     let remainingNums = currentVars[1];
+//     subsetArrays.push(currentSubset);
 
-    for (let i = 0; i < remainingNums.length; i++) {
-      queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
+//     for (let i = 0; i < remainingNums.length; i++) {
+//       queue.push([currentSubset.concat(remainingNums[i]), remainingNums.slice(i + 1)]);
+//     }
+//   }
+
+//   return subsetArrays;
+// };
+
+// const nums = [1, 2, 3];
+// const result = subsets(nums);
+// console.log(result);
+const numIslands = (grid) => {
+  const findNeighbors = (node, matrix) => {
+    const [row, col] = node;
+    const neighbors = [
+      [row - 1, col],
+      [row + 1, col],
+      [row, col - 1],
+      [row, col + 1],
+    ];
+
+    const validNeighbors = neighbors.filter((neighbor) => {
+      const [currentRow, currentCol] = neighbor;
+      return (
+        matrix[currentRow] &&
+        matrix[currentRow][currentCol] === '1'
+      );
+    });
+    return validNeighbors;
+  };
+
+  let islandsCount = 0;
+  let visited = new Set();
+
+  for (let row = 0; row < grid.length; row++) {
+    for (let column = 0; column < grid[0].length; column++) {
+      let node = [row, column];
+      if (!visited.has(node.toString()) && grid[row][column] === '1') {
+        islandsCount++;
+        visited.add(node.toString());
+        let queue = [node];
+
+        while (queue.length > 0) {
+          let currentNode = queue.shift();
+          let neighbors = findNeighbors(currentNode, grid);
+          neighbors.forEach((neighbor) => {
+            if (!visited.has(neighbor.toString())) {
+              queue.push(neighbor);
+              visited.add(neighbor.toString());
+            }
+          });
+        }
+      }
     }
   }
-
-  return subsetArrays;
+  return islandsCount;
 };
 
-const nums = [1, 2, 3];
-const result = subsets(nums);
-console.log(result);
+console.log(numIslands([["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]));
