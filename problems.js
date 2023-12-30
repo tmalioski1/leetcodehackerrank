@@ -889,51 +889,61 @@ class ListNode {
 // const nums = [1, 2, 3];
 // const result = subsets(nums);
 // console.log(result);
-const numIslands = (grid) => {
-  const findNeighbors = (node, matrix) => {
-    const [row, col] = node;
-    const neighbors = [
-      [row - 1, col],
-      [row + 1, col],
-      [row, col - 1],
-      [row, col + 1],
-    ];
+// const numIslands = (grid) => {
+//   const findNeighbors = (node, matrix) => {
+//     const [row, col] = node;
+//     const neighbors = [
+//       [row - 1, col],
+//       [row + 1, col],
+//       [row, col - 1],
+//       [row, col + 1],
+//     ];
 
-    const validNeighbors = neighbors.filter((neighbor) => {
-      const [currentRow, currentCol] = neighbor;
-      return (
-        matrix[currentRow] &&
-        matrix[currentRow][currentCol] === '1'
-      );
-    });
-    return validNeighbors;
-  };
+//     const validNeighbors = neighbors.filter((neighbor) => {
+//       const [currentRow, currentCol] = neighbor;
+//       return (
+//         matrix[currentRow] &&
+//         matrix[currentRow][currentCol] === '1'
+//       );
+//     });
+//     return validNeighbors;
+//   };
 
-  let islandsCount = 0;
-  let visited = new Set();
+//   let islandsCount = 0;
+//   let visited = new Set();
 
-  for (let row = 0; row < grid.length; row++) {
-    for (let column = 0; column < grid[0].length; column++) {
-      let node = [row, column];
-      if (!visited.has(node.toString()) && grid[row][column] === '1') {
-        islandsCount++;
-        visited.add(node.toString());
-        let queue = [node];
+//   for (let row = 0; row < grid.length; row++) {
+//     for (let column = 0; column < grid[0].length; column++) {
+//       let node = [row, column];
+//       if (!visited.has(node.toString()) && grid[row][column] === '1') {
+//         islandsCount++;
+//         visited.add(node.toString());
+//         let queue = [node];
 
-        while (queue.length > 0) {
-          let currentNode = queue.shift();
-          let neighbors = findNeighbors(currentNode, grid);
-          neighbors.forEach((neighbor) => {
-            if (!visited.has(neighbor.toString())) {
-              queue.push(neighbor);
-              visited.add(neighbor.toString());
-            }
-          });
-        }
-      }
-    }
-  }
-  return islandsCount;
-};
+//         while (queue.length > 0) {
+//           let currentNode = queue.shift();
+//           let neighbors = findNeighbors(currentNode, grid);
+//           neighbors.forEach((neighbor) => {
+//             if (!visited.has(neighbor.toString())) {
+//               queue.push(neighbor);
+//               visited.add(neighbor.toString());
+//             }
+//           });
+//         }
+//       }
+//     }
+//   }
+//   return islandsCount;
+// };
 
-console.log(numIslands([["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]));
+
+// function multiply(num1, num2) {
+//   // base case
+//   if (num2 == 0) return 0;
+//   if (num2 == 1) return num1;
+//   const recursiveVal = multiply(num1, num2 - 1)
+//   console.log('num2', num2)
+//   console.log('recursiveVal', recursiveVal)
+//   return num1 + recursiveVal
+// }
+// console.log(multiply(5, 3))  // 15

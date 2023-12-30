@@ -1259,52 +1259,266 @@
 #             )
 #         ]
 #         return valid_neighbors
-from collections import deque
-def numIslands(grid):
-    
-    def findNeighbors(node, matrix):
-        [row, col] = node
+# from collections import deque
+# def numIslands(grid):
 
-        neighbors = [
-            [row - 1, col],
-            [row + 1, col],
-            [row, col - 1],
-            [row, col + 1],
-        ]
+#     def findNeighbors(node, matrix):
+#         [row, col] = node
 
-        valid_neighbors = [
-            tuple(current_node)
-            for current_node in neighbors
-            if (
-                0 <= current_node[0] < len(matrix)
-                and 0 <= current_node[1] < len(matrix[0])
-                and int(matrix[current_node[0]][current_node[1]]) == 1
-            )
-        ]
-        return valid_neighbors
+#         neighbors = [
+#             [row - 1, col],
+#             [row + 1, col],
+#             [row, col - 1],
+#             [row, col + 1],
+#         ]
 
-    islands_count = 0
-    visited = set()
+#         valid_neighbors = [
+#             tuple(current_node)
+#             for current_node in neighbors
+#             if (
+#                 0 <= current_node[0] < len(matrix)
+#                 and 0 <= current_node[1] < len(matrix[0])
+#                 and int(matrix[current_node[0]][current_node[1]]) == 1
+#             )
+#         ]
+#         return valid_neighbors
 
-    for row in range(len(grid)):
-        for column in range(len(grid[row])):
-            node = [row, column]
-            if tuple(node) not in visited and int(grid[row][column]) == 1:
-                islands_count += 1
-                visited.add(tuple(node))
+#     islands_count = 0
+#     visited = set()
 
-                queue = deque([node])
-                while queue:
-                    current_node = queue.popleft()
-                    neighbors = findNeighbors(current_node, grid)
-                    for neighbor in neighbors:
-                        if neighbor not in visited:
-                            queue.append(neighbor)
-                            visited.add(neighbor)
+#     for row in range(len(grid)):
+#         for column in range(len(grid[row])):
+#             node = [row, column]
+#             if tuple(node) not in visited and int(grid[row][column]) == 1:
+#                 islands_count += 1
+#                 visited.add(tuple(node))
 
-    return islands_count
+#                 queue = deque([node])
+#                 while queue:
+#                     current_node = queue.popleft()
+#                     neighbors = findNeighbors(current_node, grid)
+#                     for neighbor in neighbors:
+#                         if neighbor not in visited:
+#                             queue.append(neighbor)
+#                             visited.add(neighbor)
 
-print(numIslands([["1", "1", "1", "1", "0"],
-                 ["1", "1", "0", "1", "0"],
-                 ["1", "1", "0", "0", "0"],
-                 ["0", "0", "0", "0", "0"]]))
+#     return islands_count
+
+# print(numIslands([["1", "1", "1", "1", "0"],
+#                  ["1", "1", "0", "1", "0"],
+#                  ["1", "1", "0", "0", "0"],
+#                  ["0", "0", "0", "0", "0"]]))
+
+
+# class Node:
+#     def __init__(self, val = 0, neighbors = None):
+#         self.val = val
+#         self.neighbors = neighbors if neighbors is not None else []
+
+
+# def cloneGraph(node:['Node']):
+#     graph = list()
+#     queue = deque()
+#     queue.append(node)
+#     visited = set()
+
+#     while queue:
+
+#         curr_node = queue.popleft()
+#         val = curr_node.val
+#         if val not in visited:
+#             visited.add(val)
+#             sub_array = []
+#             neighbors = curr_node.neighbors
+#             for neighbor in neighbors:
+#                 sub_array.append(neighbor.val)
+#             graph.append(sub_array)
+#     return graph
+
+
+# def cloneGraph(self, node: Optional[Node]) -> Optional[Node]:
+#         if not node:
+#             return None
+
+#         original_to_clone = {}
+#         queue = deque()
+#         queue.append(node)
+#         visited = set()
+
+#         while queue:
+#             curr_node = queue.popleft()
+#             val = curr_node.val
+
+#             if val not in visited:
+#                 visited.add(val)
+
+#                 # Check if the node is already cloned
+#                 if val not in original_to_clone:
+#                     original_to_clone[val] = Node(val)
+#                 cloned_node = original_to_clone[val]
+
+#                 # Process neighbors
+#                 for neighbor in curr_node.neighbors:
+#                     neighbor_val = neighbor.val
+#                     if neighbor_val not in original_to_clone:
+#                         original_to_clone[neighbor_val] = Node(neighbor_val)
+#                         queue.append(neighbor)
+#                     cloned_node.neighbors.append(original_to_clone[neighbor_val])
+
+#         # Return the cloned node corresponding to the input node
+#         return original_to_clone[node.val]
+
+
+# from collections import deque
+
+# def numIslands(grid):
+
+#     def findNeighbors(node, matrix):
+#         [row, col] = node
+
+#         neighbors = [
+#             [row - 1, col],
+#             [row + 1, col],
+#             [row, col - 1],
+#             [row, col + 1],
+#         ]
+
+#         valid_neighbors = [
+#             tuple(current_node)
+#             for current_node in neighbors
+#             if (
+#                 0 <= current_node[0] < len(matrix)
+#                 and 0 <= current_node[1] < len(matrix[0])
+#                 and int(matrix[current_node[0]][current_node[1]]) == 1
+#             )
+#         ]
+#         return valid_neighbors
+
+#     islands_count = 0
+#     visited = set()
+
+#     for row in range(len(grid)):
+#         for column in range(len(grid[row])):
+#             node = [row, column]
+#             if tuple(node) not in visited and int(grid[row][column]) == 1:
+#                 islands_count += 1
+#                 visited.add(tuple(node))
+
+#                 queue = deque([node])
+#                 while queue:
+#                     current_node = queue.popleft()
+#                     neighbors = findNeighbors(current_node, grid)
+#                     for neighbor in neighbors:
+#                         if neighbor not in visited:
+#                             queue.append(neighbor)
+#                             visited.add(neighbor)
+
+#     return islands_count
+
+# print(numIslands([["1", "1", "1", "1", "0"],
+#                  ["1", "1", "0", "1", "0"],
+#                  ["1", "1", "0", "0", "0"],
+#                  ["0", "0", "0", "0", "0"]]))
+
+# from collections import deque
+# def maxAreaOfIsland(grid):
+#         def findNeighbors(node, matrix):
+#             [row, col] = node
+
+#             neighbors = [
+#                 [row - 1, col],
+#                 [row + 1, col],
+#                 [row, col - 1],
+#                 [row, col + 1],
+#             ]
+
+#             valid_neighbors = [
+#                 tuple(current_node)
+#                 for current_node in neighbors
+#                 if (
+#                     0 <= current_node[0] < len(matrix)
+#                     and 0 <= current_node[1] < len(matrix[0])
+#                     and matrix[current_node[0]][current_node[1]] == 1
+#                 )
+#             ]
+#             return valid_neighbors
+
+#         max_area = 0
+#         visited = set()
+#         for row in range(len(grid)):
+#             for column in range(len(grid[row])):
+#                 island_area = 0
+#                 node = tuple([row, column])
+#                 if node not in visited and (grid[row][column] == 1):
+#                     visited.add(node)
+#                     island_area += 1
+
+#                     queue = deque([node])
+#                     while queue:
+#                         current_node = queue.popleft()
+#                         neighbors = findNeighbors(current_node, grid)
+#                         for neighbor in neighbors:
+#                             if neighbor not in visited:
+#                                 queue.append(neighbor)
+#                                 visited.add(neighbor)
+#                                 island_area +=1
+#                     if island_area > max_area:
+#                         max_area = island_area
+#         return max_area
+
+
+## iteratre through matrix- for each node, if all of its left neighbors (and neighbor's neighbors, etc.) OR all of its right neighbors AND all of its up neighbors OR all of its down neighbors are valid, add it to ouptut
+## top row, leftmost column- if a node's closest neighbor is less than or equal, and all the other right or bottom neighbors are in ascending order, add
+##last row, rightmost column- if a node's closest neighbor is less than or equal, and all other left or top neighbors are in ascending order, add
+
+# def pacificAtlantic(heights):
+#     def dfs(row, col, prev_value, ocean):
+#         if row < 0 or row >= len(heights) or col < 0 or col >= len(heights[0]) or visited[row][col] or heights[row][col] < prev_value:
+#             return
+
+#         visited[row][col] = True
+
+#         if ocean == "pacific":
+#             pacific_reachable[row][col] = True
+#         elif ocean == "atlantic":
+#             atlantic_reachable[row][col] = True
+
+#         directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+#         for dr, dc in directions:
+#             new_row, new_col = row + dr, col + dc
+#             dfs(new_row, new_col, heights[row][col], ocean)
+
+#     if not heights:
+#         return []
+
+#     rows, cols = len(heights), len(heights[0])
+#     visited = [[False] * cols for _ in range(rows)]
+#     pacific_reachable = [[False] * cols for _ in range(rows)]
+#     atlantic_reachable = [[False] * cols for _ in range(rows)]
+
+#     for row in range(rows):
+#         dfs(row, 0, float('-inf'), "pacific")
+
+#     for col in range(cols):
+#         dfs(0, col, float('-inf'), "pacific")
+
+#     visited = [[False] * cols for _ in range(rows)]
+
+#     for row in range(rows):
+#         dfs(row, cols - 1, float('-inf'), "atlantic")
+
+#     for col in range(cols):
+#         dfs(rows - 1, col, float('-inf'), "atlantic")
+
+#     valid_nodes = []
+#     for row in range(rows):
+#         for col in range(cols):
+#             if pacific_reachable[row][col] and atlantic_reachable[row][col]:
+#                 valid_nodes.append([row, col])
+
+#     return valid_nodes
+
+# heights1 = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
+# print(pacificAtlantic(heights1))
+
+
