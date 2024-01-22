@@ -1522,3 +1522,740 @@
 # print(pacificAtlantic(heights1))
 
 
+# def superDigit(n, k):
+#     def calculate_super_digit(number_string):
+#         if len(number_string) == 1:
+#             return int(number_string)
+
+#         digit_sum = sum(int(digit) for digit in number_string)
+#         return calculate_super_digit(str(digit_sum))
+
+#     initial_super_digit = sum(int(digit) for digit in n) * k
+#     return calculate_super_digit(str(initial_super_digit))
+
+
+
+
+
+# def counterGame(n):
+#     turn = 0
+
+#     while n != 1:
+#         if n & (n - 1) == 0:
+#             n //= 2
+#         else:
+#             largest_power_of_two = 1 << ( - 1)
+#             n -= largest_power_of_two
+
+#         turn += 1
+
+#     return 'Richard' if turn % 2 == 0 else 'Louise'
+
+
+
+# n = 4  # binary: 1010
+# x = 0  # binary: 0111
+
+# # Using bitwise XOR
+# result_xor = n ^ x
+
+# # Using addition
+# result_addition = n + x
+
+# print(result_xor)
+# print(result_addition)
+
+
+# def count_unset_bits(n):
+#     count = 0
+#     while n:
+#         count += n % 2 == 0
+#         n //= 2
+#     return count
+
+# def sumXor(n):
+#     unset_bits_count = count_unset_bits(n)
+#     print(unset_bits_count)
+#     result = 2 ** unset_bits_count
+#     return result
+
+# print(sumXor(4))
+
+
+
+# def flippingMatrix(matrix):
+#     max_total = 0
+#     n = int(len(matrix)/2)
+
+#     for i in range(n):
+#         for j in range(n):
+#             max_s = max(matrix[i][j], matrix[i][(2*n-1)-j], matrix[(2*n-1)-i][j], matrix[(2*n-1)-i][(2*n-1)-j])
+#             max_total += max_s
+
+#     return max_total
+
+
+
+
+
+# matrix1 = [[112, 42, 83, 119], [56, 125, 56, 49], [15, 78, 101, 43], [62, 98, 114, 108]]
+
+
+# ##Expected OutPut is uppermatrix 119, 114, 56, 125 = 414
+# print(flippingMatrix(matrix1))
+
+
+
+# from collections import Counter
+# def anagram(s):
+#     if len(s) % 2 != 0:
+#         return -1
+
+
+#     split = len(s) // 2
+#     s_1 = sorted(s[0:split])
+#     s_2 = sorted(s[split:])
+
+#     if s_1 == s_2:
+#         return 0
+
+
+#     else:
+#         changes = 0
+
+#         for i in range(len(s_1)):
+#             if s_1[i] != s_2[i]:
+#                 changes += 1
+
+
+
+
+#     return changes
+
+# print(anagram('aaabbb'))
+# print(anagram('ab'))
+# print(anagram('abc'))
+# print(anagram('mnop'))
+# print(anagram('xyyx'))
+# print(anagram('xaxbbbxx'))
+
+
+
+#key = place in grid, value = i
+
+# def replace_char(string, index, new_char):
+#             string = string[:index] + new_char + string[index + 1:]
+#             return string
+
+
+# def bomberMan(n, grid):
+#             row = len(grid)
+#             char = len(grid[0])
+
+#             def detonate(grid):
+#                     chords = set()
+#                     for i in range(row):
+#                             j = grid[i].find("O")
+#                             print('this is j', j)
+#                             while j != -1:
+#                                     if grid[i][j] == "O":
+#                                             chords.update([(i, j), (i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)])
+#                                     j = grid[i].find("O", j + 1)
+#                             grid[i] = "O" * char
+#                     for i, j in chords:
+#                             if 0 <= i < row and 0 <= j < char:
+#                                     grid[i] = replace_char(grid[i], j, ".")
+#                     return grid
+
+#             if n == 1:
+#                     return grid
+#             elif n % 2 == 0:
+#                     return ["O" * char for i in range(row)]
+#             elif n == 3:
+#                     return detonate(grid)
+#             elif (n + 1) % 4 == 0:
+#                     return detonate(grid)
+#             else:
+#                     return detonate(detonate(grid))
+
+# n = 3
+# grid = ['.......', '...O...', '....O..', '.......', 'OO.....', 'OO.....']
+
+# print(bomberMan(n, grid))
+
+
+# from collections import Counter
+# def isValid(s):
+#     count = Counter(s)
+#     vals = list(count.values())
+#     first_val = vals[0]
+#     dif_count = 0
+#     for i in range(len(vals)):
+#         if vals[i] != first_val:
+#             dif_count += 1
+#         if dif_count >= 2:
+#             return 'NO'
+#     return 'YES'
+
+# print(isValid('aaaabbcc'))
+
+# def minimumBribes(q):
+#     bribes = 0
+
+#     index_map = {s: i for i, s in enumerate(q, start=1)}
+#     position_map = {i: s for i, s in enumerate(q, start=1)}
+
+#     for index in range(len(q), 0, -1):
+#         print('index_map', index_map)
+#         print('position_map', position_map)
+#         position = index_map[index]
+#         print('index', index)
+#         print('position', position)
+
+#         diff = index - position
+#         if diff > 2:
+#             print('Too chaotic')
+#             return
+#         bribes += diff
+
+#         # update position infos (simulates removing item 'index')
+#         for i in range(position, index):
+#             index_to_move = position_map[i + 1]
+#             index_map[index_to_move] = i
+#             position_map[i] = index_to_move
+
+#         del index_map[index]
+
+#     print(bribes)
+
+# minimumBribes([2, 1, 5, 3, 4])
+
+
+# def climbingLeaderboard(ranked, player):
+
+#     scores = list()
+#     for score in player:
+#         ranked_set = list(set(ranked))
+#         ranked_set.append(score)
+#         ranked_set.sort(reverse=True)
+#         rank = ranked_set.index(score) + 1
+#         scores.append(rank)
+
+#     return scores
+
+
+
+# def climbingLeaderboard(ranked, player):
+
+#     for i, score in enumerate(player):
+#         ranked_set = list(set(ranked))
+#         ranked_set.append(score)
+#         ranked_set.sort(reverse=True)
+#         rank = ranked_set.index(score) + 1
+#         player[i] = rank
+
+
+#     return player
+
+# def climbingLeaderboard(ranked, player):
+#     unique_ranked = sorted(set(ranked), reverse=True)  # Remove duplicates and sort in descending order
+#     print('unique_ranked', unique_ranked)
+#     scores = []
+#     for score in player:
+#         rank = find_rank(unique_ranked, score)
+#         scores.append(rank)
+
+#     return scores
+
+# def find_rank(rankedList, score):
+#     low, high = 0, len(rankedList) - 1
+
+#     while low <= high:
+#         mid = (low + high) // 2
+
+#         if rankedList[mid] == score:
+#             return mid + 1
+#         elif rankedList[mid] > score:
+#             low = mid + 1
+#         else:
+#             high = mid - 1
+
+#     return low + 1
+
+
+# ranked = [100, 100, 50, 40, 40, 20, 10]
+
+# player = [5, 25, 50, 120]
+
+# print(climbingLeaderboard(ranked, player))
+# from collections import defaultdict
+
+# def icecreamParlor(m, arr):
+#     index_dict = {}  # A dictionary to store the indices of visited elements
+
+#     for i, cost in enumerate(arr):
+#         complement = m - cost
+
+#         if complement in index_dict:
+#             # Found a pair that adds up to m
+#             return [index_dict[complement] + 1, i + 1]
+
+#         # Add the current element and its index to the dictionary
+#         index_dict[cost] = i
+
+#     return None  # No such pair found
+
+# print(icecreamParlor(8, [2, 6, 3, 4, 8]))
+
+
+
+
+# def isBalanced(s):
+#     symbol_dict = {'}': '{', ']': '[', ')': '('}
+#     keys = symbol_dict.keys()
+#     stack = list()
+
+#     for char in s:
+#         if char not in keys:
+#             stack.append(char)
+#         elif char in keys and stack:
+#             matched = stack.pop()
+#             if symbol_dict[char] != matched:
+#                 return 'NO'
+
+#     return 'NO' if stack else 'YES'
+
+
+
+
+
+
+
+
+# s1 = "{[()]}" #YES
+# s2 = "[(])" #NO
+# s3 = '{{[[(())]]}}' #YES
+# s4 = '{{([])}}' #YES
+# s5 = '{{)[](}}' #NO
+# s6 = '{(([])[])[]}' #YES
+# s7 = '{(([])[])[]]}' #NO
+# s8 = '{(([])[])[]}[]' #YES
+
+
+# print(isBalanced(s1))
+# print(isBalanced(s2))
+# print(isBalanced(s3))
+# print(isBalanced(s4))
+# print(isBalanced(s5))
+# print(isBalanced(s6))
+# print(isBalanced(s7))
+# print(isBalanced(s8))
+
+
+# def waiter(number, q):
+#     def primeArray(number):
+#         def isPrime(num):
+#             if num < 2:
+#                 return False
+#             for i in range(2, int(num**0.5) + 1):
+#                 if num % i == 0:
+#                     return False
+#             return True
+
+#         prime_array = []
+#         i = 2
+#         while len(prime_array) < number:
+#             if isPrime(i):
+#                 prime_array.append(i)
+#             i += 1
+
+#         return prime_array
+
+#     primes = primeArray(q)
+#     answers = []
+#     stackA = []
+#     stackB = []
+
+#     for n in range(q):
+#         current_prime = primes[n]
+#         for plate in number:
+#             if plate % current_prime == 0:
+#                 stackB.append(plate)
+#             else:
+#                 stackA.append(plate)
+#         while stackB:
+#             answers.append(stackB.pop())
+#         number = stackA
+#         stackA = []
+
+#     while number:
+#         answers.append(number.pop())
+
+#     return answers
+
+
+
+# # number1 = [3, 4, 7, 6, 5]
+
+# number2 = [3, 3, 4, 4, 9]
+
+# # print(waiter(number1, 1))
+# print(waiter(number2, 2))
+
+
+# def reverse(llist=None, prev=None):
+#     if llist is None:
+#         return prev
+#     temp = llist.next
+#     llist.next = prev
+#     prev = llist
+#     return reverse(temp, prev)
+
+
+# def reverseDouble(llist):
+#     if llist is None:
+#         return None
+#     next_node = llist.next
+#     llist.next, llist.prev = llist.prev, llist.next
+#     if next_node is None:
+#         return llist
+#     return reverseDouble(next_node)
+
+
+# def insertNodeAtPosition(llist, data, position):
+
+#     new_node = SinglyLinkedListNode(data)
+#     prev_node = None
+#     next_node = llist
+#     while position > 0:
+#         prev_node, next_node = next_node, next_node.next
+#         position -= 1
+#     if prev_node is not None:
+#         prev_node.next = new_node
+#     new_node.next = next_node
+#     return llist
+
+# def mergeTwoLists(list1, list2):
+#         cur = new_list = ListNode()
+#         while list1 and list2:
+#             if list1.val < list2.val:
+#                 cur.next = list1
+#                 list1, cur = list1.next, list1
+#             else:
+#                 cur.next = list2
+#                 list2, cur = list2.next, list2
+
+#         if list1 or list2:
+#             cur.next = list1 if list1 else list2
+
+#         return new_list.next
+
+# def maxAdjSum(A):
+#     count = 0
+#     sums = {}
+#     prev_sum = -1
+#     for i in range(len(A) - 1):
+#         current_sum = A[i] + A[i + 1]
+#         print('current_sum', current_sum)
+#         if current_sum not in sums:
+#             sums[current_sum] = 1
+#             prev_sum = current_sum
+#         elif current_sum != prev_sum:
+#             sums[current_sum] += 1
+#             prev_sum = current_sum
+#         else:
+#             prev_sum = -1
+#         print('sums', sums)
+#         count = max(count, sums[current_sum])
+#         print('count', count)
+
+#     return count
+
+# print("[10, 1, 3, 1, 2, 2, 1, 0, 4]: ",maxAdjSum([10, 1, 3, 1, 2, 2, 1, 0, 4])) # 3
+# print("[5, 3, 1, 3, 2, 3]: ",maxAdjSum([5, 3, 1, 3, 2, 3])) # 1
+# print("[9, 9, 9, 9, 9]: ",maxAdjSum([9, 9, 9, 9, 9])) # 2
+# print("[1, 5, 2, 4, 3, 3]: ",maxAdjSum([1, 5, 2, 4, 3, 3])) # 3
+
+
+# ]
+
+#helper function to count occurances of each value in A
+#another helper function to find substing with least unique values
+#turn substring with least unique values to a variable, remove variable from A. Turn A into a set and return length of set
+# from collections import Counter
+# def solution(A, R):
+#     string_list = [str(num) for num in A]
+
+#     def least_unique(string_list, substring_length):
+#         count = Counter(string_list)
+#         max = 0
+#         max_substring = list()
+#         for i in range(len(string_list)):
+#             substring = string_list[i: i+substring_length]
+#             substring_count = 0
+#             for char in substring:
+#                 if count[char] > 1:
+#                     substring_count += 1
+#             if substring_count > max:
+#                 max = substring_count
+#                 max_substring = substring
+#         return max_substring
+
+#     B = least_unique(string_list, R)
+#     for element in B:
+#         if element in string_list:
+#             string_list.remove(element)
+
+#     return len(set(string_list))
+
+
+
+
+
+
+
+
+# A = [1, 2, 3, 4, 5, 2, 3, 1, 4]
+# R = 3
+# result = solution(A, R)
+# print(result)
+# # Output: 5
+
+# print(solution([2, 2, 3, 2, 2, 2], 3))
+
+
+
+
+# def truckTour(petrolpumps):
+#     n = len(petrolpumps)
+
+#     start = 0
+#     total_petrol = 0
+#     current_petrol = 0
+
+#     for i in range(n):
+#         petrol, distance = petrolpumps[i]
+#         total_petrol += petrol - distance
+#         print('current_petrol', current_petrol)
+
+#         if current_petrol < 0:
+#             start = i
+#             current_petrol = 0
+
+#         current_petrol += petrol - distance
+
+#     return start if total_petrol >= 0 else -1
+
+# print(truckTour([[1, 5], [10, 3], [3, 4]]))
+
+
+# from collections import deque
+# def equalStacks(h1, h2, h3):
+#     h1_queue = deque(h1)
+#     h2_queue = deque(h2)
+#     h3_queue = deque(h3)
+
+#     h1_sum, h2_sum, h3_sum = sum(h1_queue), sum(h2_queue), sum(h3_queue)
+
+#     while h1_queue and h2_queue and h3_queue:
+#         min_sum = min(h1_sum, h2_sum, h3_sum)
+#         print('min_sum', min_sum)
+
+#         while h1_sum > min_sum:
+#             h1_sum -= h1_queue.popleft()
+
+#         while h2_sum > min_sum:
+#             h2_sum -= h2_queue.popleft()
+
+#         while h3_sum > min_sum:
+#             h3_sum -= h3_queue.popleft()
+
+#         if h1_sum == h2_sum == h3_sum:
+#             return h1_sum
+
+#     return 0
+
+
+# h1 = [3, 2, 1, 1, 1]
+# h2 = [4, 3, 2]
+# h3 = [1, 1, 4, 1]
+# print(equalStacks(h1, h2, h3))
+
+
+# import math
+
+# def maxSubarray(arr):
+#     n = len(arr)
+#     current_sum = 0
+#     max_sum = -math.inf
+#     max_positive_sum = 0
+
+#     for i in range(n):
+#         print('this is arr[i]', arr[i])
+#         current_sum = max(arr[i], current_sum + arr[i])
+#         print('this is current sum', current_sum)
+#         max_sum = max(max_sum, current_sum)
+#         print('this is max sum', max_sum)
+
+
+#         if arr[i] > 0:
+#             max_positive_sum += arr[i]
+#             print('this is max positive sum', max_positive_sum)
+#         print('-------------')
+
+#     if max(arr) < 0:
+#         max_positive_sum = max(arr)
+
+#     return max_sum, max_positive_sum
+
+# # arr1 = [1, 2, 3, 4]
+# arr2 = [2, -3, 2, 3, 4, -5, 10]
+# # arr3 = [-2, -3, -1, -4, -6]
+
+# # print(maxSubarray(arr1))
+# print(maxSubarray(arr2))
+# # print(maxSubarray(arr3))
+
+
+# import heapq
+
+# def cookies(k, A):
+#     heapq.heapify(A)
+#     i = 0
+
+
+#     while len(A) > 1 and A[0] < k:
+#         first_num = heapq.heappop(A)
+#         second_num = heapq.heappop(A)
+#         new_num = first_num + 2 * second_num
+#         heapq.heappush(A, new_num)
+#         i += 1
+
+#     if all(num >= k for num in A):
+#         return i
+#     else:
+#         return -1
+
+
+
+# k1 =  7
+# A1 = [1, 2, 3, 9, 10, 12]
+
+# print(cookies(k1, A1))
+# def hackerlandRadioTransmitters(x, k):
+#     transms=1
+#     x.sort()
+#     i=0
+#     centerCandidatePos = x[i]+k
+#     antennaPos = i
+#     while i < len(x):
+#         # print('x', x)
+#         print('antennaPos', antennaPos)
+#         print('centerCandidatePos', centerCandidatePos)
+#         current = x[i]
+#         print('current', x[i])
+#         if current <= centerCandidatePos:
+#             antennaPos = current
+#         elif current > antennaPos+k:
+#             centerCandidatePos = current+k
+#             transms+=1
+#         print('transms', transms)
+#         print('--------')
+
+#         i+=1
+
+#     return transms
+
+
+# x1 = [1, 2, 3, 4, 5]
+# k1 = 1
+
+# x2 = [7, 2, 4, 6, 5, 9, 12, 11]
+# k2 = 2
+
+# print(hackerlandRadioTransmitters(x1, k1))
+# print(hackerlandRadioTransmitters(x2, k2))
+
+#
+# from collections import deque
+# def solve(arr, queries):
+#     result = []
+
+#     for q in queries:
+#         print('q', q)
+#         min_among_max = max_val = max(arr[:q])
+#         queue = deque(arr[:q])
+
+#         i = q
+#         while i < len(arr):
+#             print('queue', queue)
+#             num = arr[i]
+#             print('num', num)
+#             queue.append(num)
+#             popped = queue.popleft()
+#             print('popped', popped)
+
+#             max_val = max(max_val, num) if popped < max_val else max(queue)
+#             print('max val', max_val)
+#             min_among_max = min(min_among_max, max_val)
+#             print('min among max', min_among_max)
+#             i += 1
+#             print('-----------')
+#         print('q stop -------')
+#         result.append(min_among_max)
+#     return result
+
+
+# arr1 = [33, 11, 44, 11, 55]
+# queries1 = [1, 2, 3, 4, 5]
+
+# print(solve(arr1, queries1))
+
+
+# def arrayManipulation(n, queries):
+#     n_array = [0] * n
+#     for query in queries:
+#         first_index = query[0] - 1
+#         second_index = query[1]
+#         value = query[2]
+#         for i in range(first_index, second_index):
+#             n_array[i] += value
+
+#     return max(n_array)
+
+
+
+
+# def arrayManipulation(n, queries):
+#     n_array = [0] * (n + 1)
+
+#     for query in queries:
+#         first_index = query[0] - 1
+#         second_index = query[1]
+#         value = query[2]
+
+#         n_array[first_index] += value
+#         n_array[second_index] -= value
+#     max_value = 0
+#     prefix_sum = 0
+
+#     for i in range(n + 1):
+#         prefix_sum += n_array[i]
+#         max_value = max(max_value, prefix_sum)
+
+
+#     return max_value
+
+
+
+# from itertools import accumulate
+# def arrayManipulation(n, queries):
+#     deltas = [0] * (n+1)
+#     for a, b, k in queries:
+#         deltas[a-1] += k
+#         deltas[b] -= k
+#     return max(accumulate(deltas))
+
+
+queries = [[1, 2, 100], [2, 5, 100], [3, 4, 100]]
+print(arrayManipulation(5, queries))

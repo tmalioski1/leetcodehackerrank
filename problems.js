@@ -947,3 +947,58 @@ class ListNode {
 //   return num1 + recursiveVal
 // }
 // console.log(multiply(5, 3))  // 15
+
+
+// const superDigit = (n, k) => {
+
+
+//   const calculateSuperDigit = (numberString) => {
+//     if (numberString.length === 1){
+//       return Number(numberString)
+//     }
+//     let sum = 0
+//     for (let i = 0; i < numberString.length; i++){
+//       let num = Number(numberString[i])
+//       sum += num
+//     }
+//     return calculateSuperDigit(String(sum))
+//   }
+
+//   let sum = 0
+
+//   for (let i = 0; i < n.length; i++) {
+//     let num = Number(n[i])
+//     sum += num
+
+//   }
+//   let initialSuperDigit = sum * k
+
+//   return calculateSuperDigit(initialSuperDigit)
+
+// }
+
+const maxAdjSum = (A) => {
+  let count = 0
+  let sums = {}
+  let prevSum = -1
+
+  for (let i = 0; i <= A.length -1; i++) {
+    let currentSum = A[i] + A[i+1]
+    if (!(currentSum in sums)) {
+      sums[currentSum] = 1
+      prevSum = currentSum
+    } else if (currentSum != prevSum) {
+      sums[currentSum]++
+      prevSum = currentSum
+    } else {
+      prevSum = -1
+    }
+    count = Math.max(count, sums[currentSum]);
+  }
+return count
+}
+
+console.log("[10, 1, 3, 1, 2, 2, 1, 0, 4]: ",maxAdjSum([10, 1, 3, 1, 2, 2, 1, 0, 4])) // 3
+console.log("[5, 3, 1, 3, 2, 3]: ",maxAdjSum([5, 3, 1, 3, 2, 3])) // 1
+console.log("[9, 9, 9, 9, 9]: ",maxAdjSum([9, 9, 9, 9, 9])) // 2
+console.log("[1, 5, 2, 4, 3, 3]: ",maxAdjSum([1, 5, 2, 4, 3, 3])) // 3
