@@ -2257,5 +2257,45 @@
 #     return max(accumulate(deltas))
 
 
-queries = [[1, 2, 100], [2, 5, 100], [3, 4, 100]]
-print(arrayManipulation(5, queries))
+# queries = [[1, 2, 100], [2, 5, 100], [3, 4, 100]]
+# print(arrayManipulation(5, queries))
+
+
+def highestValuePalindrome(s, n, k):
+    if k > len(s):
+        return '9' * len(s)
+
+    min_changes_to_make_palindrome = 0
+    arr = [int(c) for c in s]
+    mid = len(arr) // 2
+
+    marked = [False] * mid
+
+    for i in range(mid):
+        l = arr[i]
+        r = arr[-(i+1)]
+        max_val = max(l, r)
+        if l != r:
+            min_changes_to_make_palindrome += 1
+            arr[i] = arr[-(i+1)] = max_val
+            marked[i] = True
+
+    if min_changes_to_make_palindrome > k:
+        return '-1'
+
+    changes_left = k - min_changes_to_make_palindrome
+    for i in range(mid):
+        if arr[i] == 9:
+            continue
+
+        change_required = 1 if marked[i] else 2
+        if change_required <= changes_left:
+            arr[i] = arr[-(i+1)] = 9
+            changes_left -= change_required
+        if changes_left == 0:
+            break
+
+    if changes_left == 1 and len(arr) % 2 != 0:
+        arr[mid] = 9
+
+    return "".join(str(i) for i in arr)
