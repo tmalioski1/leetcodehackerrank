@@ -2270,6 +2270,7 @@ def highestValuePalindrome(s, n, k):
     mid = len(arr) // 2
 
     marked = [False] * mid
+    print('marked', marked)
 
     for i in range(mid):
         l = arr[i]
@@ -2299,3 +2300,22 @@ def highestValuePalindrome(s, n, k):
         arr[mid] = 9
 
     return "".join(str(i) for i in arr)
+
+
+s1 = '3943'
+n1 = 4
+k1 = 1
+
+s2 = '092282'
+n2 = 6
+k2 = 3
+
+s3 = '0011'
+n3 = 4
+k3 = 1
+
+print(highestValuePalindrome(s1, n1, k1))
+print(highestValuePalindrome(s2, n2, k2))
+print(highestValuePalindrome(s3, n3, k3))
+
+
