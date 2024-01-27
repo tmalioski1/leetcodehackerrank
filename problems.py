@@ -2319,11 +2319,12 @@
 
 
 def makeSwaps(arr):
+    # sort list of values while keeping their original index
     beautiful_arr = (sorted(list(enumerate(arr)), key=lambda x: x[1]))
-    print('beautiful_arr', beautiful_arr)
     num_swaps = 0
     for idx in range(len(arr)):
         while True:
+            # while the original won't correspond to the "correct" by order index, swap
             if beautiful_arr[idx][0] == idx:
                 break
             else:
@@ -2333,8 +2334,5 @@ def makeSwaps(arr):
 
     return num_swaps
 
-arr1 = [2, 5, 3, 1]
-# arr2 = [3, 4, 2, 5, 1]
-
-print(makeSwaps(arr1))
-# print(makeSwaps(arr2))
+def lilysHomework(arr):
+    return min(makeSwaps(arr), makeSwaps(arr[::-1]))
