@@ -2261,61 +2261,80 @@
 # print(arrayManipulation(5, queries))
 
 
-def highestValuePalindrome(s, n, k):
-    if k > len(s):
-        return '9' * len(s)
+# def highestValuePalindrome(s, n, k):
+#     if k > len(s):
+#         return '9' * len(s)
 
-    min_changes_to_make_palindrome = 0
-    arr = [int(c) for c in s]
-    mid = len(arr) // 2
+#     min_changes_to_make_palindrome = 0
+#     arr = [int(c) for c in s]
+#     mid = n // 2
 
-    marked = [False] * mid
-    print('marked', marked)
+#     marked = [False] * mid
 
-    for i in range(mid):
-        l = arr[i]
-        r = arr[-(i+1)]
-        max_val = max(l, r)
-        if l != r:
-            min_changes_to_make_palindrome += 1
-            arr[i] = arr[-(i+1)] = max_val
-            marked[i] = True
+#     for i in range(mid):
+#         l = arr[i]
+#         r = arr[-(i+1)]
+#         max_val = max(l, r)
+#         if l != r:
+#             min_changes_to_make_palindrome += 1
+#             arr[i] = arr[-(i+1)] = max_val
+#             marked[i] = True
 
-    if min_changes_to_make_palindrome > k:
-        return '-1'
+#     if min_changes_to_make_palindrome > k:
+#         return '-1'
 
-    changes_left = k - min_changes_to_make_palindrome
-    for i in range(mid):
-        if arr[i] == 9:
-            continue
+#     changes_left = k - min_changes_to_make_palindrome
+#     for i in range(mid):
+#         if arr[i] == 9:
+#             continue
 
-        change_required = 1 if marked[i] else 2
-        if change_required <= changes_left:
-            arr[i] = arr[-(i+1)] = 9
-            changes_left -= change_required
-        if changes_left == 0:
-            break
+#         change_required = 1 if marked[i] else 2
+#         if change_required <= changes_left:
+#             arr[i] = arr[-(i+1)] = 9
+#             changes_left -= change_required
+#         if changes_left == 0:
+#             break
 
-    if changes_left == 1 and len(arr) % 2 != 0:
-        arr[mid] = 9
+#     if changes_left == 1 and n % 2 != 0:
+#         arr[mid] = 9
 
-    return "".join(str(i) for i in arr)
-
-
-s1 = '3943'
-n1 = 4
-k1 = 1
-
-s2 = '092282'
-n2 = 6
-k2 = 3
-
-s3 = '0011'
-n3 = 4
-k3 = 1
-
-print(highestValuePalindrome(s1, n1, k1))
-print(highestValuePalindrome(s2, n2, k2))
-print(highestValuePalindrome(s3, n3, k3))
+#     return "".join(str(i) for i in arr)
 
 
+# s1 = '3943'
+# n1 = 4
+# k1 = 1
+
+# s2 = '092282'
+# n2 = 6
+# k2 = 3
+
+# s3 = '0011'
+# n3 = 4
+# k3 = 1
+
+# print(highestValuePalindrome(s1, n1, k1))
+# print(highestValuePalindrome(s2, n2, k2))
+# print(highestValuePalindrome(s3, n3, k3))
+
+
+def makeSwaps(arr):
+    beautiful_arr = (sorted(list(enumerate(arr)), key=lambda x: x[1]))
+    print('beautiful_arr', beautiful_arr)
+    num_swaps = 0
+    for idx in range(len(arr)):
+        while True:
+            if beautiful_arr[idx][0] == idx:
+                break
+            else:
+                num_swaps += 1
+                swapped_idx = beautiful_arr[idx][0]
+                beautiful_arr[idx], beautiful_arr[swapped_idx] = beautiful_arr[swapped_idx], beautiful_arr[idx]
+
+    return num_swaps
+
+arr1 = [2, 5, 3, 1]
+# arr2 = [3, 4, 2, 5, 1]
+
+print(makeSwaps(arr1))
+# print(makeSwaps(arr2))
