@@ -2318,21 +2318,41 @@
 # print(highestValuePalindrome(s3, n3, k3))
 
 
-def makeSwaps(arr):
-    # sort list of values while keeping their original index
-    beautiful_arr = (sorted(list(enumerate(arr)), key=lambda x: x[1]))
-    num_swaps = 0
-    for idx in range(len(arr)):
-        while True:
-            # while the original won't correspond to the "correct" by order index, swap
-            if beautiful_arr[idx][0] == idx:
-                break
+# def makeSwaps(arr):
+#     beautiful_arr = (sorted(list(enumerate(arr)), key=lambda x: x[1]))
+#     num_swaps = 0
+#     for idx in range(len(arr)):
+#         while True:
+#             if beautiful_arr[idx][0] == idx:
+#                 break
+#             else:
+#                 num_swaps += 1
+#                 swapped_idx = beautiful_arr[idx][0]
+#                 beautiful_arr[idx], beautiful_arr[swapped_idx] = beautiful_arr[swapped_idx], beautiful_arr[idx]
+
+#     return num_swaps
+
+# def lilysHomework(arr):
+#     return min(makeSwaps(arr), makeSwaps(arr[::-1]))
+
+
+def minimalOperations(words):
+    def min_word(word):
+        count = 0
+        curr_char = ''
+        for i in range(1, len(word)):
+            char = word[i]
+            prev_char = word[i - 1]
+
+            if char == prev_char and char != curr_char:
+                count += 1
+                curr_char = char
             else:
-                num_swaps += 1
-                swapped_idx = beautiful_arr[idx][0]
-                beautiful_arr[idx], beautiful_arr[swapped_idx] = beautiful_arr[swapped_idx], beautiful_arr[idx]
+                curr_char = ''
 
-    return num_swaps
+        return count
+    count_arr = list()
+    for word in words:
+        count_arr.append(min_word(word))
 
-def lilysHomework(arr):
-    return min(makeSwaps(arr), makeSwaps(arr[::-1]))
+    return count_arr
