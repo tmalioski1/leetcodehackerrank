@@ -2336,40 +2336,33 @@
 #     return min(makeSwaps(arr), makeSwaps(arr[::-1]))
 
 
+
+
 # def minimalOperations(words):
-#     def min_word(word):
-#         count = 0
-#         curr_char = ''
-#         for i in range(1, len(word)):
-#             char = word[i]
-#             prev_char = word[i - 1]
-
-#             if char == prev_char and char != curr_char:
-#                 count += 1
-#                 curr_char = char
-#             else:
-#                 curr_char = ''
-
-#         return count
-#     count_arr = list()
+#     count_arr = []
 #     for word in words:
-#         count_arr.append(min_word(word))
-
+#         count = 0
+#         prev_char = None
+#         for char in word:
+#             if char == prev_char:
+#                 count += 1
+#                 prev_char = None
+#             else:
+#                 prev_char = char
+#         count_arr.append(count)
 #     return count_arr
 
+# print(minimalOperations(['boook', 'add', 'break']))
 
-def minimalOperations(words):
-    count_arr = []
-    for word in words:
-        count = 0
-        prev_char = None
-        for char in word:
-            if char == prev_char:
-                count += 1
-                prev_char = None  # Reset prev_char to None after counting consecutive characters
-            else:
-                prev_char = char
-        count_arr.append(count)
-    return count_arr
 
-print(minimalOperations(['boook', 'add']))
+def isPrefix(word1, word2):
+    if word1 > word2:
+        return False
+    for i in range(len(word2)):
+        word2_frament = word2[i:(i+ len(word1))]
+        if word1 == word2_frament:
+            return True
+
+    return False
+
+print(isPrefix('bcde', 'bcd'))
