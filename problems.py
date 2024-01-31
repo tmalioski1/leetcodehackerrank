@@ -2355,14 +2355,35 @@
 # print(minimalOperations(['boook', 'add', 'break']))
 
 
-def isPrefix(word1, word2):
-    if word1 > word2:
-        return False
-    for i in range(len(word2)):
-        word2_frament = word2[i:(i+ len(word1))]
-        if word1 == word2_frament:
-            return True
+# def isPrefix(word1, word2):
+#     if len(word1) > len(word2):
+#         return False
+#     for i in range(len(word2)):
+#         word2_frament = word2[i:(i+ len(word1))]
+#         if word1 == word2_frament:
+#             return True
 
-    return False
+#     return False
 
-print(isPrefix('bcde', 'bcd'))
+# print(isPrefix('bcde', 'bcd'))
+
+
+import math
+
+def noPrefix(words):
+    c1, c2 = set(), set()
+    for word in words:
+        # word 'b' is a prefix in the previous words like ['bacd', .. :
+        if word in c2:
+                print(f"BAD SET\n{word}")
+                return
+
+        # prefix 'b' from word 'bacd' is in the previous words like ['b', .. :
+        for prefix in (word[:i] for i in range(1,len(word)+1)):
+            if prefix in c1:
+                print(f"BAD SET\n{word}")
+                return
+            c2.add(prefix)
+        c1.add(word)
+
+    print("GOOD SET")
