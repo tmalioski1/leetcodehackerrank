@@ -2368,22 +2368,76 @@
 # print(isPrefix('bcde', 'bcd'))
 
 
-import math
 
-def noPrefix(words):
-    c1, c2 = set(), set()
-    for word in words:
-        # word 'b' is a prefix in the previous words like ['bacd', .. :
-        if word in c2:
-                print(f"BAD SET\n{word}")
-                return
+# def noPrefix(words):
+#     c1, c2 = set(), set()
+#     for word in words:
+#         # word 'b' is a prefix in the previous words like ['bacd', .. :
+#         if word in c2:
+#                 print(f"BAD SET\n{word}")
+#                 return
 
-        # prefix 'b' from word 'bacd' is in the previous words like ['b', .. :
-        for prefix in (word[:i] for i in range(1,len(word)+1)):
-            if prefix in c1:
-                print(f"BAD SET\n{word}")
-                return
-            c2.add(prefix)
-        c1.add(word)
+#         # prefix 'b' from word 'bacd' is in the previous words like ['b', .. :
+#         for prefix in (word[:i] for i in range(1,len(word)+1)):
+#             if prefix in c1:
+#                 print(f"BAD SET\n{word}")
+#                 return
+#             c2.add(prefix)
+#         c1.add(word)
 
-    print("GOOD SET")
+#     print("GOOD SET")
+
+# def countSubarrays(nums, k):
+#     max_num = max(nums)
+
+#     max_num_count = 0
+
+#     for i in range(len(nums)):
+#         j = len(nums)
+#         while j > i and j-i >= k:
+#             sub_arr = nums[i:j]
+#             print('sub_arr', sub_arr)
+#             if sub_arr.count(max_num) >=k:
+#                 max_num_count += 1
+#             j -= 1
+
+
+
+#     return max_num_count
+
+# def countSubarrays(nums, k):
+#     max_num = max(nums)
+#     answer = 0
+#     max_num_count = 0
+
+#     left = 0
+
+#     for i in range(len(nums)):
+#         current_num = nums[i]
+#         print('i', i)
+#         print('current_num', current_num)
+
+#         if current_num == max_num:
+#             max_num_count += 1
+
+#         print('max_num_count', max_num_count)
+#         while max_num_count >=k:
+#             answer += len(nums) -i
+#             print('answer', answer)
+#             print('left', left)
+#             if nums[left] == max_num:
+#                 max_num_count -= 1
+
+#             left += 1
+#         print('--------------')
+
+
+
+
+
+#     return answer
+
+
+# nums1 = [1, 3, 2, 3, 3]
+# k1 = 2
+# print(countSubarrays(nums1, k1))
