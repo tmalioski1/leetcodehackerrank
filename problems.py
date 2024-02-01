@@ -2441,3 +2441,17 @@
 # nums1 = [1, 3, 2, 3, 3]
 # k1 = 2
 # print(countSubarrays(nums1, k1))
+
+from itertools import permutations
+
+def nextPermutation(nums):
+    nums_permutations = list(permutations(nums))
+    input_nums_index = nums_permutations.index(tuple(nums)) + 1
+    next_nums = list(nums_permutations[input_nums_index])
+    return next_nums
+
+
+
+
+list1 = [1,2,3]
+print(nextPermutation(list1))
