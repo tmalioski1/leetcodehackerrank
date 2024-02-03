@@ -2442,16 +2442,39 @@
 # k1 = 2
 # print(countSubarrays(nums1, k1))
 
-from itertools import permutations
+# from itertools import permutations
 
-def nextPermutation(nums):
-    nums_permutations = list(permutations(nums))
-    input_nums_index = nums_permutations.index(tuple(nums)) + 1
-    next_nums = list(nums_permutations[input_nums_index])
-    return next_nums
-
-
+# def nextPermutation(nums):
+#     nums_permutations = list(permutations(nums))
+#     input_nums_index = nums_permutations.index(tuple(nums)) + 1
+#     next_nums = list(nums_permutations[input_nums_index])
+#     return next_nums
 
 
-list1 = [1,2,3]
-print(nextPermutation(list1))
+
+
+# list1 = [1,2,3]
+# print(nextPermutation(list1))
+
+
+from collections import deque
+
+def lengthofLongestSubstring(s):
+    res = 0
+
+    queue = deque()
+
+    for char in s:
+        if char in queue:
+            while queue.popleft() != char:
+                continue
+
+        queue.append(char)
+
+        res = max(res, len(queue))
+
+    return res
+
+print(lengthofLongestSubstring('abcabcbb'))
+print(lengthofLongestSubstring('bbbbb'))
+print(lengthofLongestSubstring('pwwkew'))
