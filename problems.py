@@ -2457,24 +2457,35 @@
 # print(nextPermutation(list1))
 
 
-from collections import deque
+# from collections import deque
 
-def lengthofLongestSubstring(s):
-    res = 0
+# def lengthofLongestSubstring(s):
+#     res = 0
 
-    queue = deque()
+#     queue = deque()
 
-    for char in s:
-        if char in queue:
-            while queue.popleft() != char:
-                continue
+#     for char in s:
+#         if char in queue:
+#             while queue.popleft() != char:
+#                 continue
+#         queue.append(char)
 
-        queue.append(char)
 
-        res = max(res, len(queue))
+#         res = max(res, len(queue))
 
-    return res
+#     return res
 
-print(lengthofLongestSubstring('abcabcbb'))
-print(lengthofLongestSubstring('bbbbb'))
-print(lengthofLongestSubstring('pwwkew'))
+# print(lengthofLongestSubstring('abcabcbb'))
+# print(lengthofLongestSubstring('bbbbb'))
+# print(lengthofLongestSubstring('pwwkew'))
+def findRepeatedDnaSequences(s):
+        repeated_strings = set()
+        strings = set()
+
+        for i in range(len(s) - 9):
+            current_string = s[i:i+10]
+            if current_string in strings:
+                repeated_strings.add(current_string)
+            strings.add(current_string)
+
+        return repeated_strings
