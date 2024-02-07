@@ -2489,3 +2489,27 @@ def findRepeatedDnaSequences(s):
             strings.add(current_string)
 
         return repeated_strings
+
+
+
+
+def minSubArrayLen(target, nums):
+        res, curSum, l = len(nums) + 1, 0, 0
+
+        for i, num in enumerate(nums):
+            curSum += num
+            print('curSum', curSum)
+            while curSum >= target and l <= i:
+                print('i', i)
+                print('l', l)
+                res = min(res, i-l+1)
+                print('res', res)
+                curSum -= nums[l]
+                l += 1
+            print('----------')
+        return res%(len(nums)+1)
+
+nums1 = [2,3,1,2,4,4]
+target1 = 7
+
+print(minSubArrayLen(target1, nums1))
