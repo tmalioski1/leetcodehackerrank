@@ -2513,3 +2513,17 @@ nums1 = [2,3,1,2,4,4]
 target1 = 7
 
 print(minSubArrayLen(target1, nums1))
+
+
+from collections import Counter
+
+def longestSubstring(s, k):
+        if s == [] or k > len(s):
+            return 0
+        num_counter = Counter(s)
+        for i, char in enumerate(s):
+            if num_counter[char] < k:
+                return max(longestSubstring(s[:i], k),  longestSubstring(s[i+1:], k))
+        return len(s)
+
+print(longestSubstring('ababbc', 2))
