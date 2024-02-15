@@ -2478,52 +2478,71 @@
 # print(lengthofLongestSubstring('abcabcbb'))
 # print(lengthofLongestSubstring('bbbbb'))
 # print(lengthofLongestSubstring('pwwkew'))
-def findRepeatedDnaSequences(s):
-        repeated_strings = set()
-        strings = set()
+# def findRepeatedDnaSequences(s):
+#         repeated_strings = set()
+#         strings = set()
 
-        for i in range(len(s) - 9):
-            current_string = s[i:i+10]
-            if current_string in strings:
-                repeated_strings.add(current_string)
-            strings.add(current_string)
+#         for i in range(len(s) - 9):
+#             current_string = s[i:i+10]
+#             if current_string in strings:
+#                 repeated_strings.add(current_string)
+#             strings.add(current_string)
 
-        return repeated_strings
-
-
+#         return repeated_strings
 
 
-def minSubArrayLen(target, nums):
-        res, curSum, l = len(nums) + 1, 0, 0
-
-        for i, num in enumerate(nums):
-            curSum += num
-            print('curSum', curSum)
-            while curSum >= target and l <= i:
-                print('i', i)
-                print('l', l)
-                res = min(res, i-l+1)
-                print('res', res)
-                curSum -= nums[l]
-                l += 1
-            print('----------')
-        return res%(len(nums)+1)
-
-nums1 = [2,3,1,2,4,4]
-target1 = 7
-
-print(minSubArrayLen(target1, nums1))
 
 
-from collections import Counter
+# def minSubArrayLen(target, nums):
+#         res, curSum, l = len(nums) + 1, 0, 0
 
-def longestSubstring(s, k):
-        if s == [] or k > len(s):
-            return 0
-        num_counter = Counter(s)
-        for i, char in enumerate(s):
-            if num_counter[char] < k:
-                return max(longestSubstring(s[:i], k),  longestSubstring(s[i+1:], k))
-        return len(s)
+#         for i, num in enumerate(nums):
+#             curSum += num
+#             print('curSum', curSum)
+#             while curSum >= target and l <= i:
+#                 print('i', i)
+#                 print('l', l)
+#                 res = min(res, i-l+1)
+#                 print('res', res)
+#                 curSum -= nums[l]
+#                 l += 1
+#             print('----------')
+#         return res%(len(nums)+1)
 
-print(longestSubstring('ababbc', 2))
+# nums1 = [2,3,1,2,4,4]
+# target1 = 7
+
+# print(minSubArrayLen(target1, nums1))
+
+
+# from collections import Counter
+
+# def longestSubstring(s, k):
+#         if s == [] or k > len(s):
+#             return 0
+#         num_counter = Counter(s)
+#         for i, char in enumerate(s):
+#             if num_counter[char] < k:
+#                 return max(longestSubstring(s[:i], k),  longestSubstring(s[i+1:], k))
+#         return len(s)
+
+# print(longestSubstring('ababbc', 2))
+
+def isPossible(a, b, c, d):
+    while (a, c) != (c, d):
+        if a > c or b > d:
+            break
+
+        if a + b == c or b + a == d:
+            return 'Yes'
+        elif a + b < c:
+            a, b = a + b, b
+        elif b + a < d:
+            a, b = a, b + a
+        else:
+            break
+    return 'No'
+
+# Example usage
+result = isPossible(1, 1, 5, 2)
+print(result)
