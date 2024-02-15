@@ -2528,21 +2528,44 @@
 
 # print(longestSubstring('ababbc', 2))
 
-def isPossible(a, b, c, d):
-    while (a, c) != (c, d):
-        if a > c or b > d:
-            break
+# def isPossible(a, b, c, d):
+#     while (a, c) != (c, d):
+#         if a > c or b > d:
+#             break
 
-        if a + b == c or b + a == d:
-            return 'Yes'
-        elif a + b < c:
-            a, b = a + b, b
-        elif b + a < d:
-            a, b = a, b + a
-        else:
-            break
+#         if a + b == c or b + a == d:
+#             return 'Yes'
+#         elif a + b < c:
+#             a, b = a + b, b
+#         elif b + a < d:
+#             a, b = a, b + a
+#         else:
+#             break
+#     return 'No'
+
+# # Example usage
+# result = isPossible(1, 1, 5, 2)
+# print(result)
+
+
+def isPossible(a, b, c,d):
+    if a==c and b==d:
+        return 'Yes'
+
+    elif a > c or b >d:
+        return 'No'
+
+    else:
+        ans = False
+        if a < c:
+            if isPossible(a+b, b, c, d):
+                return 'Yes'
+
+        if b <d:
+            if isPossible(a, b+a, c,d):
+                return 'Yes'
+
     return 'No'
 
-# Example usage
 result = isPossible(1, 1, 5, 2)
 print(result)
