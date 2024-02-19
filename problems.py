@@ -2548,24 +2548,56 @@
 # print(result)
 
 
-def isPossible(a, b, c,d):
-    if a==c and b==d:
-        return 'Yes'
+# def isPossible(a, b, c,d):
+#     print('new recursion:', '----------------------')
+#     print('a', a)
+#     print('b', b)
+#     if a==c and b==d:
+#         return 'Yes'
 
-    elif a > c or b >d:
-        return 'No'
+#     elif a > c or b >d:
+#         return 'No'
 
-    else:
-        ans = False
-        if a < c:
-            if isPossible(a+b, b, c, d):
-                return 'Yes'
+#     else:
+#         ans = 'No'
+#         if a < c:
+#             if isPossible(a+b, b, c, d):
+#                 return 'Yes'
 
-        if b <d:
-            if isPossible(a, b+a, c,d):
-                return 'Yes'
+#         if b <d:
+#             if isPossible(a, b+a, c,d):
+#                 return 'Yes'
 
-    return 'No'
+#     return 'No'
 
-result = isPossible(1, 1, 5, 2)
-print(result)
+# result = isPossible(1, 2, 2, 17)
+# print(result)
+
+from collections import Counter
+def characterReplacement(s, k):
+    max_length, largest_count = 0,0
+    letter_count_arr = Counter()
+
+    for i in range(len(s)):
+        print('iteration:', i+1)
+        letter_count_arr [s[i]] += 1
+        print('letter_count_arr', letter_count_arr)
+        largest_count = max(largest_count, letter_count_arr[s[i]])
+        print('largest_count', largest_count)
+        print('max_length', max_length)
+        if max_length - largest_count >= k:
+            letter_count_arr[s[i - max_length]] -= 1
+
+        else:
+            max_length += 1
+
+    return max_length
+
+
+s1 = 'ABAB'
+k1 = 2
+s2 = 'AABABBA'
+k2 = 1
+
+print(characterReplacement(s1, k1))
+print(characterReplacement(s2, k2))
