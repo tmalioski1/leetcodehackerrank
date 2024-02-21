@@ -2574,30 +2574,76 @@
 # print(result)
 
 from collections import Counter
-def characterReplacement(s, k):
-    max_length, largest_count = 0,0
-    letter_count_arr = Counter()
+from collections import defaultdict
+# def characterReplacement(s, k):
+#     max_length, largest_count = 0,0
+#     letter_count_arr = Counter()
 
-    for i in range(len(s)):
-        print('iteration:', i+1)
-        letter_count_arr [s[i]] += 1
-        print('letter_count_arr', letter_count_arr)
-        largest_count = max(largest_count, letter_count_arr[s[i]])
-        print('largest_count', largest_count)
-        print('max_length', max_length)
-        if max_length - largest_count >= k:
-            letter_count_arr[s[i - max_length]] -= 1
+#     for i in range(len(s)):
+#         print('iteration:', i+1)
+#         letter_count_arr [s[i]] += 1
+#         print('letter_count_arr', letter_count_arr)
+#         largest_count = max(largest_count, letter_count_arr[s[i]])
+#         print('largest_count', largest_count)
+#         print('max_length', max_length)
+#         print('------------')
+#         if max_length - largest_count >= k:
+#             letter_count_arr[s[i - max_length]] -= 1
 
-        else:
-            max_length += 1
+#         else:
+#             max_length += 1
 
-    return max_length
+#     return max_length
 
 
-s1 = 'ABAB'
-k1 = 2
-s2 = 'AABABBA'
-k2 = 1
+# # s1 = 'ABAB'
+# # k1 = 2
+# s2 = 'AABABBA'
+# k2 = 1
 
-print(characterReplacement(s1, k1))
-print(characterReplacement(s2, k2))
+# # print(characterReplacement(s1, k1))
+# print(characterReplacement(s2, k2))
+
+#create counter for p
+#create l pointer = 0
+#create initially empty index_array
+#create sub_string_count = 0
+#iterate r for len(s)
+#while sub_string_count < len(p)
+#if s[r] key  not in in p or letter count greater than that in p counter, break
+# if sub_string_count = len(p), append first index of sub_string
+
+
+from collections import Counter
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        if len(s) < len(p):
+            return []
+
+        # Initialize counters for string p and the sliding window
+        p_counter = Counter(p)
+        window_counter = Counter(s[:len(p)])
+        result = []
+
+        # Check the first window
+        if p_counter == window_counter:
+            result.append(0)
+
+        # Slide the window and update the window counter
+        for i in range(1, len(s) - len(p) + 1):
+            # Remove the leftmost character from the window
+            left_char = s[i - 1]
+            window_counter[left_char] -= 1
+            if window_counter[left_char] == 0:
+                del window_counter[left_char]
+
+            # Add the rightmost character to the window
+            right_char = s[i + len(p) - 1]
+            window_counter[right_char] += 1
+
+            # Check if the current window is an anagram
+            if window_counter == p_counter:
+                result.append(i)
+
+        return result
