@@ -2573,8 +2573,6 @@
 # result = isPossible(1, 2, 2, 17)
 # print(result)
 
-from collections import Counter
-from collections import defaultdict
 # def characterReplacement(s, k):
 #     max_length, largest_count = 0,0
 #     letter_count_arr = Counter()
@@ -2614,36 +2612,45 @@ from collections import defaultdict
 # if sub_string_count = len(p), append first index of sub_string
 
 
-from collections import Counter
+# from collections import Counter
 
-class Solution:
-    def findAnagrams(self, s: str, p: str) -> List[int]:
-        if len(s) < len(p):
-            return []
+# def findAnagrams( s, p):
+#         if len(s) < len(p):
+#             return []
 
-        # Initialize counters for string p and the sliding window
-        p_counter = Counter(p)
-        window_counter = Counter(s[:len(p)])
-        result = []
+#         # Initialize counters for string p and the sliding window
+#         p_counter = Counter(p)
+#         window_counter = Counter(s[:len(p)])
+#         result = []
 
-        # Check the first window
-        if p_counter == window_counter:
-            result.append(0)
+#         # Check the first window
+#         if p_counter == window_counter:
+#             result.append(0)
 
-        # Slide the window and update the window counter
-        for i in range(1, len(s) - len(p) + 1):
-            # Remove the leftmost character from the window
-            left_char = s[i - 1]
-            window_counter[left_char] -= 1
-            if window_counter[left_char] == 0:
-                del window_counter[left_char]
+#         # Slide the window and update the window counter
+#         for i in range(1, len(s) - len(p) + 1):
+#             # Remove the leftmost character from the window
+#             left_char = s[i - 1]
+#             window_counter[left_char] -= 1
+#             if window_counter[left_char] == 0:
+#                 del window_counter[left_char]
 
-            # Add the rightmost character to the window
-            right_char = s[i + len(p) - 1]
-            window_counter[right_char] += 1
+#             # Add the rightmost character to the window
+#             right_char = s[i + len(p) - 1]
+#             window_counter[right_char] += 1
 
-            # Check if the current window is an anagram
-            if window_counter == p_counter:
-                result.append(i)
+#             # Check if the current window is an anagram
+#             if window_counter == p_counter:
+#                 result.append(i)
 
-        return result
+#         return result
+
+
+def getMaxFun(singer, length):
+    return sum(i * j for i, j in zip(singer,length))
+
+
+singer = [1,2,2]
+length = [2,3,2]
+
+print(getMaxFun(singer, length))
