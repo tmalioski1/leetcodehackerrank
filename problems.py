@@ -2645,12 +2645,27 @@
 
 #         return result
 
+from itertools import permutations
 
 def getMaxFun(singer, length):
-    return sum(i * j for i, j in zip(singer,length))
+    n = len(singer)
+    songs = list(zip(singer, length))  # Combine songs by singer
 
+    max_fun = 0
 
-singer = [1,2,2]
-length = [2,3,2]
+    for perm in permutations(songs):  # Generate all permutations of songs
+        total_singers = set()
+        fun = 0
 
-print(getMaxFun(singer, length))
+        for s, l in perm:
+            total_singers.add(s)
+            fun += l * len(total_singers)
+
+        max_fun = max(max_fun, fun)
+
+    return max_fun
+
+# Example usage:
+singer = [1, 2, 2]
+length = [2, 3, 2]
+print(getMaxFun(singer, length))  # Output: 12
