@@ -2645,27 +2645,35 @@
 
 #         return result
 
-from itertools import permutations
+# from itertools import permutations
 
-def getMaxFun(singer, length):
-    n = len(singer)
-    songs = list(zip(singer, length))  # Combine songs by singer
+# def getMaxFun(singer, length):
+#     n = len(singer)
+#     songs = list(zip(singer, length))  # Combine songs by singer
 
-    max_fun = 0
+#     max_fun = 0
 
-    for perm in permutations(songs):  # Generate all permutations of songs
-        total_singers = set()
-        fun = 0
+#     for perm in permutations(songs):  # Generate all permutations of songs
+#         total_singers = set()
+#         fun = 0
 
-        for s, l in perm:
-            total_singers.add(s)
-            fun += l * len(total_singers)
+#         for s, l in perm:
+#             total_singers.add(s)
+#             fun += l * len(total_singers)
 
-        max_fun = max(max_fun, fun)
+#         max_fun = max(max_fun, fun)
 
-    return max_fun
+#     return max_fun
 
-# Example usage:
-singer = [1, 2, 2]
-length = [2, 3, 2]
-print(getMaxFun(singer, length))  # Output: 12
+# # Example usage:
+# singer = [1, 2, 2]
+# length = [2, 3, 2]
+# print(getMaxFun(singer, length))  # Output: 12
+
+def findLHS(nums):
+        nums_set=list(set(nums))
+        max_length=0
+        for num in nums_set:
+            if num+1 in nums_set:
+                max_length=max(max_length,(nums.count(num)+nums.count(num+1)))
+        return max_length
